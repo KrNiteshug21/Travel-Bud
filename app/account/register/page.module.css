@@ -1,0 +1,90 @@
+.sectionWrapper {
+  --px: 0.75rem;
+  --py: 0.5rem;
+  --rounded-md: 0.5rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+  max-width: min(calc(100% - 3rem), 1200px);
+  margin-inline: auto;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionContainer {
+  flex: 1 1 auto;
+  max-width: 768px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: whitesmoke;
+}
+
+.heading {
+  font-size: var(--font-xl);
+  margin-bottom: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.inputDivs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 0.5rem;
+  right: var(--px);
+}
+
+.label {
+  display: none;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: var(--py) var(--px);
+  font-size: var(--font-lg);
+  outline: none;
+  border: none;
+  border-bottom: 2px solid gray;
+  border-radius: var(--rounded-md);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.fileInput {
+  font-size: var(--font-lg);
+}
+
+.btnContainer {
+  margin-inline: auto;
+}
+
+.registerBtn {
+  width: 10rem;
+  background-color: #333;
+  color: aliceblue;
+  font-size: var(--font-lg);
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}

@@ -1,0 +1,23 @@
+.userPage {
+    /* max-width: min(calc(100% - 3rem), 1200px);
+    margin-inline: auto; */
+    padding-block: 1rem;
+  }
+  
+  .userWrapper {
+    max-width: min(calc(100% - 3rem), 1200px);
+    margin-inline: auto;
+  }
+  
+  .userHeading {
+    padding-block: 0.5rem;
+    text-align: center;
+  }
+  
+  .userCardWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
