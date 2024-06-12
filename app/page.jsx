@@ -4,7 +4,7 @@ import image from "@/public/img/Customer-Service-in-Travel-Industry.jpg";
 import styles from "./page.module.css";
 import Header from "@/components/Header";
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
       <Header />

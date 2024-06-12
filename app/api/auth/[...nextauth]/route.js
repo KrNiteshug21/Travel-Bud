@@ -1,9 +1,10 @@
 import NextAuth from "next-auth";
-import { fetchUsers } from "@/lib/userData";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcrypt";
+import connectDB from "@/lib/DBConn";
+import User from "@/models/User";
 
 export const OPTIONS = {
   providers: [
@@ -31,13 +32,15 @@ export const OPTIONS = {
         },
       },
       async authorize(credentials) {
-        const users = await fetchUsers();
+        await connectDB();
+        const user = await User.find(
+          (user) => credentials.username === user.name
+        );
 
-        const user = users.find((user) => credentials.username === user.name);
-
-        const isSame =
-          (await bcrypt.compare(credentials.password, user.password)) &&
-          credentials.username === user.name;
+        const isSame = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
 
         if (isSame) {
           return user;
