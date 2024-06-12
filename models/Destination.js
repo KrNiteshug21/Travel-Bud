@@ -13,5 +13,5 @@ const destinationSchema = new mongoose.Schema({
 });
 
 module.exports =
-  mongoose.models.Destination ||
+  mongoose?.models?.Destination ||
   mongoose.model("Destination", destinationSchema);

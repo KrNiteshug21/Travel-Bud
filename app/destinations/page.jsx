@@ -1,11 +1,13 @@
-"use server";
+"use client";
 import DestinationCards from "@/components/destinationPage/DestinationCards";
-import { fetchDestination } from "@/lib/destinationData";
+import { useDestinations } from "@/hooks/queries";
 import styles from "./page.module.css";
 
-export default async function DestinationPage() {
-  const destinations = await fetchDestination();
-  console.log("destinations", destinations);
+export default function DestinationPage() {
+  const { data: destinations, isError, error, isLoading } = useDestinations();
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error}</div>;
+  console.log("destinations");
 
   return (
     <>

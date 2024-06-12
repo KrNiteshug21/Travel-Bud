@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Inter } from "next/font/google";
-import Wrapper from "@/components/Wrapper";
+import ReactQueryClientProvider from "@/components/Wrapper";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,11 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Wrapper />
-        <Navbar />
-        {children}
-        <Footer />
-        <Wrapper />
+        <ReactQueryClientProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ReactQueryClientProvider>
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import image from "@/public/img/Customer-Service-in-Travel-Industry.jpg";
 import styles from "./page.module.css";

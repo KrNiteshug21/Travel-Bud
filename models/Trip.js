@@ -8,4 +8,4 @@ const tripSchema = new mongoose.Schema({
   peoplejoined: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
-module.exports = mongoose.models.Trip || mongoose.model("Trip", tripSchema);
+module.exports = mongoose?.models?.Trip || mongoose.model("Trip", tripSchema);

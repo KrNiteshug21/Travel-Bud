@@ -1,10 +1,13 @@
+"use client";
 import BuddyCards from "@/components/rootPage/BuddyCards";
-import { fetchUsers } from "@/lib/userData";
+import { useUsers } from "@/hooks/queries";
 import styles from "./page.module.css";
 
-export default async function UsersPage() {
-  const users = await fetchUsers();
-  console.log("users", users);
+export default function UsersPage() {
+  const { data: users, isLoading, isError, error } = useUsers();
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error}</div>;
+
   return (
     <main className={styles.userPage}>
       <div className={styles.userWrapper}>
