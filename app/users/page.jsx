@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 
 export default async function UsersPage() {
   const users = await fetchUsers();
+  console.log("users", users);
   return (
     <main className={styles.userPage}>
       <div className={styles.userWrapper}>

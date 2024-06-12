@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 
 export default function TripPage() {
+  console.log("TripPage");
   return (
     <>
       <main>

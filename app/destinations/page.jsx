@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 
 export default async function DestinationPage() {
   const destinations = await fetchDestination();
+  console.log("destinations", destinations);
 
   return (
     <>
