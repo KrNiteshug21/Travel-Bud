@@ -1,6 +1,4 @@
-import { getServerSession } from "next-auth";
 import { createUploadthing } from "uploadthing/next";
-import { authOptions } from "../auth/[...nextauth]/options";
 
 const f = createUploadthing();
 
