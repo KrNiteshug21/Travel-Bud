@@ -40,22 +40,16 @@ export default function Navbar() {
           <div className={styles.accountWrapper}>
             <button
               onClick={() => setShow(!show)}
+              onMouseEnter={() => setShow(true)}
               // onMouseLeave={() => setShow(false)}
             >
-              <span>
-                <MdAccountCircle size={26} />
-              </span>
+              <MdAccountCircle size={26} />
             </button>
             {show && (
-              <div
-                className={styles.popup}
-                // style={{
-                //   backgroundColor: path === "/" ? "#0C0404" : "whitesmoke",
-                //   color: path === "/" ? "whitesmoke" : "#333",
-                // }}
-              >
-                <Link href="/account/register">Register</Link>
-                <Link href="/account/login">Login</Link>
+              <div className={styles.popup}>
+                <Link href="/account/sign_up">Sign up</Link>
+                <Link href="/account/sign_in">Sign in</Link>
+                <Link href="/account/create_trip">Create Trip</Link>
               </div>
             )}
           </div>

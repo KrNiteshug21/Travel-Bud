@@ -47,5 +47,5 @@ export const DELETE = async (req, { params }) => {
   }
 
   const result = await user.deleteOne();
-  return NextResponse.json({ message: `${name} deleted` });
+  return NextResponse.json({ message: `${result.name} deleted` });
 };

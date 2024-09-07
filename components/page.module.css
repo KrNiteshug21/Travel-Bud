@@ -5,15 +5,16 @@
   z-index: 10;
   height: 4rem;
   border-bottom: 1px solid gray;
-  background-color: #333;
+  background-color: #000000e6;
   color: whitesmoke;
   position: sticky;
   top: 0;
 }
 .navbarWrapper {
   height: inherit;
-  max-width: min(calc(100% - 3rem), 1200px);
-  margin-inline: auto;
+  /* max-width: min(calc(100% - 3rem), 1200px);
+  margin-inline: auto; */
+  padding-inline: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,11 +50,12 @@
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 }
+
 .accountWrapper {
   display: block;
   cursor: pointer;
   color: inherit;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
   border-radius: 0.25rem;
   position: relative;
 }
@@ -66,23 +68,24 @@
 }
 .popup {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: whitesmoke;
   color: #333;
   width: max-content;
   line-height: 1.5;
   border-radius: 0.5rem;
 }
-.popup button {
-  cursor: pointer;
-}
+
 .popup a {
   background-color: inherit;
   color: inherit;
   cursor: pointer;
+  width: 100%;
+  text-align: center;
   /* border: 1px solid gray; */
 }
 
@@ -109,7 +112,7 @@
 
 .headerWrapper {
   height: 100%;
-  width: 50vw;
+  width: 80%;
   margin-inline: auto;
   display: grid;
   /* place-content: center; */
@@ -178,12 +181,13 @@
 
 /*        Footer        */
 .footer {
-  background-color: #333;
+  background-color: #000000e6;
   color: whitesmoke;
 }
 .footerWrapper {
-  max-width: min(calc(100% - 3rem), 1200px);
-  margin-inline: auto;
+  /* max-width: min(calc(100% - 3rem), 1200px);
+  margin-inline: auto; */
+  padding-inline: 2rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

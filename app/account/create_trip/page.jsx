@@ -1,20 +1,11 @@
-"use client";
-import { useState } from "react";
+import { IoLocation, IoPerson } from "react-icons/io5";
 import styles from "./page.module.css";
-import {
-  IoPerson,
-  IoEyeOffSharp,
-  IoEyeSharp,
-  IoMail,
-  IoLocation,
-} from "react-icons/io5";
 
-export default function RegisterPage() {
-  const [showPwd, setShowPwd] = useState(false);
+const createTripPage = () => {
   return (
     <section className={styles.sectionWrapper}>
       <div className={styles.sectionContainer}>
-        <h2 className={styles.heading}>Register Here!</h2>
+        <h2 className={styles.heading}>Create Trip!</h2>
         <form action="" className={styles.formContainer}>
           <div className={styles.flex}>
             <div className={styles.inputDivs}>
@@ -42,47 +33,6 @@ export default function RegisterPage() {
                 placeholder="Username"
               />
               <IoPerson size={24} className={styles.icon} />
-            </div>
-          </div>
-
-          <div className={styles.flex}>
-            <div className={styles.inputDivs}>
-              <label className={styles.label} htmlFor="email">
-                Email{" "}
-              </label>
-              <input
-                className={styles.input}
-                type="text"
-                id="email"
-                name="email"
-                placeholder="Email"
-              />
-              <IoMail size={24} className={styles.icon} />
-            </div>
-            <div className={styles.inputDivs}>
-              <label className={styles.label} htmlFor="password">
-                Password{" "}
-              </label>
-              <input
-                className={styles.input}
-                type={showPwd ? "text" : "password"}
-                id="password"
-                name="password"
-                placeholder="Password"
-              />
-              {showPwd ? (
-                <IoEyeOffSharp
-                  size={24}
-                  onClick={() => setShowPwd(!showPwd)}
-                  className={styles.icon}
-                />
-              ) : (
-                <IoEyeSharp
-                  size={24}
-                  onClick={() => setShowPwd(!showPwd)}
-                  className={styles.icon}
-                />
-              )}
             </div>
           </div>
 
@@ -165,4 +115,6 @@ export default function RegisterPage() {
       </div>
     </section>
   );
-}
+};
+
+export default createTripPage;

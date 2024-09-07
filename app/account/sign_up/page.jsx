@@ -1,18 +1,26 @@
 "use client";
 import { useState } from "react";
 import styles from "./page.module.css";
-import { IoPerson, IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import Link from "next/link";
+import { IoPerson, IoEyeOffSharp, IoEyeSharp, IoMail } from "react-icons/io5";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [showPwd, setShowPwd] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    console.log(username, email, password);
+  };
+
   return (
     <section className={styles.sectionWrapper}>
       <div className={styles.sectionContainer}>
-        <h2 className={styles.heading}>Register Here!</h2>
-        <form className={styles.formContainer}>
+        <h2 className={styles.heading}>Sign up!</h2>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
           <div className={styles.inputDivs}>
             <label className={styles.label} htmlFor="username">
               Username{" "}
@@ -23,8 +31,26 @@ export default function LoginPage() {
               id="username"
               name="username"
               placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <IoPerson size={24} className={styles.icon} />
+          </div>
+
+          <div className={styles.inputDivs}>
+            <label className={styles.label} htmlFor="email">
+              Email{" "}
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <IoMail size={24} className={styles.icon} />
           </div>
 
           <div className={styles.inputDivs}>
@@ -37,6 +63,8 @@ export default function LoginPage() {
               id="password"
               name="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {showPwd ? (
               <IoEyeOffSharp
@@ -53,34 +81,12 @@ export default function LoginPage() {
             )}
           </div>
 
-          <div className={styles.flex}>
-            {/* <p>Remember me</p> */}
-            <p>Forgot password</p>
-          </div>
-
           <div className={styles.btnContainer}>
-            <button type="submit" className={styles.loginBtn}>
-              Login
+            <button type="submit" className={styles.registerBtn}>
+              Register
             </button>
           </div>
         </form>
-
-        <p className={styles.orPara}>Or</p>
-
-        <div className={styles.loginDiv}>
-          <Link href="#" className={styles.loginWithFacebook}>
-            <span className={styles.loginIcons}>
-              <FaFacebook size={24} />
-            </span>{" "}
-            Login with Facebook
-          </Link>
-          <Link href="#" className={styles.loginWithGoogle}>
-            <span className={styles.loginIcons}>
-              <FcGoogle size={24} />
-            </span>
-            Login with Google
-          </Link>
-        </div>
       </div>
     </section>
   );

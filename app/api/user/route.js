@@ -1,6 +1,7 @@
 import User from "@/models/User";
 import connectDB from "@/lib/DBConn";
 import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 export const GET = async (req, res) => {
   await connectDB();
@@ -11,28 +12,32 @@ export const GET = async (req, res) => {
 export const POST = async (req, res) => {
   await connectDB();
 
-  const { name, profilepic, desc, destination, month, travelCount } =
-    await req.json();
+  const { username, email, password } = await req.json();
 
-  if (!name || !profilepic || !desc || !destination || !month || !travelCount) {
+  if (!username || !email || !password) {
     return NextResponse.json({ message: "Missing required data" });
   }
 
-  // const duplicate = await User.find({ name });
-  // if (duplicate) {
-  //   return NextResponse.json({ message: "User already present" });
-  // }
+  const duplicateUsername = await User.find({ username });
+  if (duplicateUsername?.length) {
+    console.log(duplicateUsername);
+    return NextResponse.json({ message: "Username already exists!" });
+  }
+  const duplicateMail = await User.find({ email });
+  if (duplicateMail?.length) {
+    console.log(duplicateMail);
+    return NextResponse.json({ message: "Email already exists!" });
+  }
 
-  const users = await User.create({
-    name,
-    profilepic,
-    desc,
-    destination,
-    month,
-    travelCount,
+  const hashPwd = await bcrypt.hash(password, 10);
+
+  const user = await User.create({
+    username,
+    email,
+    password: hashPwd,
   });
 
   return NextResponse.json({
-    message: `${users.name} with ${users.id} created`,
+    message: `${user.username} with ${user.id} created`,
   });
 };
