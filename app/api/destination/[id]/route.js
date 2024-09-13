@@ -19,18 +19,19 @@ export const PUT = async (req, { params }) => {
   await connectDB();
 
   const destinationId = params.id;
-  const { destinationName, destinationTitle, description, travelcost } =
-    await req.json();
+  const reqBody = await req.json();
 
   const destination = await Destination.findOne({ _id: destinationId });
   if (!destination) {
     return NextResponse.json({ message: "Destination does not exist" });
   }
 
-  if (destinationName) destination.destinationName = destinationName;
-  if (destinationTitle) destination.destinationTitle = destinationTitle;
-  if (description) destination.description = description;
-  if (travelcost) destination.travelcost = travelcost;
+  if (reqBody?.destinationName)
+    destination.destinationName = reqBody.destinationName;
+  if (reqBody?.destinationTitle)
+    destination.destinationTitle = reqBody.destinationTitle;
+  if (reqBody?.description) destination.description = reqBody.description;
+  if (reqBody?.travelcost) destination.travelcost = reqBody.travelcost;
 
   const result = await destination.save();
   return NextResponse.json({ message: `${result.destinationName} updated` });
@@ -50,8 +51,7 @@ export const DELETE = async (req, { params }) => {
   if (!destination) {
     return NextResponse.json({ message: "Destination Not Found" });
   }
-  const { destinationName } = destination;
 
   const result = await destination.deleteOne();
-  return NextResponse.json({ message: `${destinationName} deleted` });
+  return NextResponse.json({ message: `${result.destinationName} deleted` });
 };

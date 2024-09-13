@@ -1,29 +1,28 @@
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import User from "@/models/User";
+import NextAuth from "next-auth/next";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import bcrypt from "bcrypt";
+import CredentialsProvider from "next-auth/providers/credentials";
 import connectDB from "@/lib/DBConn";
-import User from "@/models/User";
+import bcrypt from "bcrypt";
 
 export const OPTIONS = {
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        username: {
-          label: "Username",
+        email: {
+          label: "Email",
           type: "text",
-          placeholder: "Enter your username...",
+          placeholder: "Enter your email...",
         },
         password: {
           label: "Password",
@@ -33,23 +32,20 @@ export const OPTIONS = {
       },
       async authorize(credentials) {
         await connectDB();
-        const user = await User.find(
-          (user) => credentials.username === user.name
-        );
+        const { email, password } = credentials;
+        if (!email || !password) return null;
+        const user = await User.findOne({ email });
 
-        const isSame = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-
-        if (isSame) {
-          return user;
-        } else {
-          return null;
-        }
+        const isSame = await bcrypt.compare(password, user.password);
+        if (!isSame) return null;
+        return user;
       },
     }),
   ],
+  pages: {
+    signIn: "/account/sign_in",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(OPTIONS);

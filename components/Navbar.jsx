@@ -5,6 +5,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
+import UserStatus from "./UserStatus";
 
 const navigations = [
   { id: 1, title: "User", src: "/users" },
@@ -37,11 +38,10 @@ export default function Navbar() {
               {nav.title}
             </Link>
           ))}
-          <div className={styles.accountWrapper}>
+          {/* <div className={styles.accountWrapper}>
             <button
               onClick={() => setShow(!show)}
               onMouseEnter={() => setShow(true)}
-              // onMouseLeave={() => setShow(false)}
             >
               <MdAccountCircle size={26} />
             </button>
@@ -52,7 +52,8 @@ export default function Navbar() {
                 <Link href="/account/create_trip">Create Trip</Link>
               </div>
             )}
-          </div>
+          </div> */}
+          <UserStatus />
         </div>
       </div>
     </nav>

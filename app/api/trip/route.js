@@ -16,11 +16,37 @@ export const GET = async (req, res) => {
 export const POST = async (req, res) => {
   await connectDB();
 
-  const { destination, uid } = await req.json();
+  const {
+    destinationName,
+    destinationTitle,
+    description,
+    images,
+    travelCost,
+    peoplejoined,
+    createdBy,
+  } = await req.json();
+
+  if (
+    !destinationName ||
+    !destinationTitle ||
+    !description ||
+    !images ||
+    !Array.isArray(images) ||
+    !travelCost ||
+    !peoplejoined ||
+    !createdBy
+  ) {
+    return NextResponse.json({ message: "Missing required data" });
+  }
 
   const trip = await Trip.create({
-    destination,
-    peoplejoined: [uid],
+    destinationName,
+    destinationTitle,
+    description,
+    images,
+    travelCost,
+    peoplejoined,
+    createdBy,
   });
 
   return NextResponse.json(trip);

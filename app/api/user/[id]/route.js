@@ -22,12 +22,10 @@ export const PATCH = async (req, { params }) => {
     return NextResponse.json({ message: "User Not Found" });
   }
 
-  if (reqBody?.name) user.name = reqBody.name;
+  if (reqBody?.username) user.username = reqBody.username;
   if (reqBody?.password) user.password = reqBody.password;
-  if (reqBody?.desc) user.desc = reqBody.desc;
-  if (reqBody?.destination) user.destination = reqBody.destination;
-  if (reqBody?.month) user.month = reqBody.month;
-  if (reqBody?.travelCount) user.travelCount = reqBody.travelCount;
+  if (reqBody?.email) user.email = reqBody.email;
+  if (reqBody?.profilePic) user.profilePic = reqBody.profilePic;
 
   const result = await user.save();
   return NextResponse.json({ mssage: `${result.name} updated`, result });
@@ -41,7 +39,6 @@ export const DELETE = async (req, { params }) => {
   }
 
   const user = await User.findOne({ _id: userId }).exec();
-  const { name } = user;
   if (!user) {
     return NextResponse.json({ message: "User Not Found" });
   }

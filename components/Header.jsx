@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import styles from "./page.module.css";
 
 const Header = () => {
-  const [destination, setDestination] = useState("");
-  const [month, setMonth] = useState("January");
+  // const [destination, setDestination] = useState("");
+  // const [month, setMonth] = useState("January");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Destination: ", destination);
-    console.log("Month: ", month);
-    console.log("");
-    setDestination("");
-    setMonth("");
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Destination: ", destination);
+  //   console.log("Month: ", month);
+  //   console.log("");
+  //   setDestination("");
+  //   setMonth("");
+  // };
 
   return (
     <>
@@ -24,7 +24,7 @@ const Header = () => {
             Get to experience the world in low cost by sharing your travelling
             expenses with your partner
           </p>
-          <form className={styles.headerForm} onSubmit={(e) => handleSubmit(e)}>
+          {/* <form className={styles.headerForm} onSubmit={(e) => handleSubmit(e)}>
             <div className={styles.destInputDiv}>
               <label htmlFor="dest">Choose travel destination: </label>
               <input
@@ -36,28 +36,6 @@ const Header = () => {
                 placeholder="Where would you like to go?"
               />
             </div>
-            {/* <div className={styles.monthSelectDiv}>
-            <label htmlFor="month">Month of Travel: </label>
-            <select
-              name="month"
-              id="month"
-              value={month}
-              onChange={(e) => setMonth(e.target.value)}
-            >
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="August">August</option>
-              <option value="September">September</option>
-              <option value="October">October</option>
-              <option value="November">November</option>
-              <option value="December">December</option>
-            </select>
-          </div> */}
             <div>
               <input
                 type="submit"
@@ -65,7 +43,7 @@ const Header = () => {
                 className={styles.searchBtn}
               />
             </div>
-          </form>
+          </form> */}
         </div>
       </header>
     </>

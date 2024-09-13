@@ -12,7 +12,7 @@ export const GET = async (req, res) => {
 export const POST = async (req, res) => {
   await connectDB();
 
-  const { username, email, password } = await req.json();
+  const { username, email, password, profilePic } = await req.json();
 
   if (!username || !email || !password) {
     return NextResponse.json({ message: "Missing required data" });
@@ -35,9 +35,10 @@ export const POST = async (req, res) => {
     username,
     email,
     password: hashPwd,
+    profilePic,
   });
 
   return NextResponse.json({
-    message: `${user.username} with ${user.id} created`,
+    message: `${user.username} created`,
   });
 };

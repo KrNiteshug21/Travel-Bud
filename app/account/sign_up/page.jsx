@@ -2,18 +2,39 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 import { IoPerson, IoEyeOffSharp, IoEyeSharp, IoMail } from "react-icons/io5";
+import { UploadButton } from "@/hooks/uploadthing";
 
 export default function RegisterPage() {
   const [showPwd, setShowPwd] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
+  const [image, setImage] = useState(null);
+
+  const createUser = async () => {
+    const response = await fetch(`/api/user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, email, password, profilePic: image }),
+    });
+
+    if (!response.ok) {
+      alert("Network response was not ok");
+    }
+
+    return response.json();
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const user = createUser();
+    if (user) alert(`${user.username} created successfully`);
+    console.log(username, email, password, image);
     setUsername("");
     setEmail("");
     setPassword("");
-    console.log(username, email, password);
   };
 
   return (
@@ -67,13 +88,13 @@ export default function RegisterPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
             {showPwd ? (
-              <IoEyeOffSharp
+              <IoEyeSharp
                 size={24}
                 onClick={() => setShowPwd(!showPwd)}
                 className={styles.icon}
               />
             ) : (
-              <IoEyeSharp
+              <IoEyeOffSharp
                 size={24}
                 onClick={() => setShowPwd(!showPwd)}
                 className={styles.icon}
@@ -81,9 +102,23 @@ export default function RegisterPage() {
             )}
           </div>
 
+          <div className="">
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                console.log("Files: ", res);
+                setImage(res[0].url);
+                alert("Upload Completed");
+              }}
+              onUploadError={(error) => {
+                alert(`ERROR! ${error.message}`);
+              }}
+            />
+          </div>
+
           <div className={styles.btnContainer}>
             <button type="submit" className={styles.registerBtn}>
-              Register
+              Sign up
             </button>
           </div>
         </form>

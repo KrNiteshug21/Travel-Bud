@@ -5,25 +5,42 @@ import { IoPerson, IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
   const [showPwd, setShowPwd] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl: "/",
+    });
+    setPassword("");
+    setEmail("");
+  };
 
   return (
     <section className={styles.sectionWrapper}>
       <div className={styles.sectionContainer}>
         <h2 className={styles.heading}>Sign In!</h2>
-        <form className={styles.formContainer}>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
           <div className={styles.inputDivs}>
-            <label className={styles.label} htmlFor="username">
-              Username{" "}
+            <label className={styles.label} htmlFor="email">
+              email{" "}
             </label>
             <input
               className={styles.input}
               type="text"
-              id="username"
-              name="username"
-              placeholder="Username"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <IoPerson size={24} className={styles.icon} />
           </div>
@@ -38,8 +55,10 @@ export default function LoginPage() {
               id="password"
               name="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            {showPwd ? (
+            {!showPwd ? (
               <IoEyeOffSharp
                 size={24}
                 onClick={() => setShowPwd(!showPwd)}

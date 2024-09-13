@@ -50,6 +50,7 @@
   position: absolute;
   top: 0.7rem;
   right: var(--px);
+  cursor: pointer;
 }
 
 .label {
