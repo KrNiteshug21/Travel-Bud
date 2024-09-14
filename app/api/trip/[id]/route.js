@@ -1,21 +1,25 @@
+import connectDB from "@/lib/DBConn";
 import Trip from "@/models/Trip";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
 
-export const PATCH = async (req, { params, user_id }) => {
+export const PATCH = async (req, { params }) => {
   await connectDB();
-  const tripId = params.id;
-  const reqBody = await req.json();
+  const { id: tripId } = params;
+  const { userId } = await req.json();
 
-  const trip = await Trip.findOne({ _id: tripId }).exec();
-  const user = await User.findOne({ _id: user_id }).exec();
+  const trip = await Trip.findById(tripId).exec();
+  if (!trip)
+    return NextResponse.status(500).json({ message: "Trip not found!" });
+  const user = await User.findById(userId).exec();
+  if (!user)
+    return NextResponse.status(500).json({ message: "User not found!" });
+  console.log("trip", trip);
 
-  trip.peoplejoined.push(user_id);
-  const result = await trip.save();
+  trip.peoplejoined.push(userId);
+  await trip.save();
 
   return NextResponse.json({
     message: `${user.username} joined trip to ${trip.destinationName}`,
-    result,
   });
 };

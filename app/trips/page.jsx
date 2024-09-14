@@ -4,24 +4,8 @@ import Trip from "@/models/Trip";
 import User from "@/models/User";
 import TripCard from "@/components/tripPage/TripCard";
 
-const joinTrip = async ({ tripId, userId }) => {
-  await connectDB();
-  const trip = await Trip.findOne({ _id: tripId }).exec();
-  const user = await User.findOne({ _id: userId }).select("-password").exec();
-  const { data: session } = await getServerSession();
-  if (!session?.user?._id) return { message: "User not authenticated" };
-
-  trip.peoplejoined.push(user._id);
-  const result = await trip.save();
-  return {
-    message: `${user.username} joined trip to ${trip.destinationName}`,
-    result,
-  };
-};
-
 export default async function TripPage() {
   await connectDB();
-
   const trips = await Trip.find({}).populate([
     {
       model: User,
@@ -51,9 +35,9 @@ export default async function TripPage() {
     <main className="mt-4 mb-6">
       <section className={styles.sectionWrapper}>
         <h2 className="my-2 font-semibold text-2xl text-center">TripPage</h2>
-        <div className="flex justify-center items-start gap-4">
+        <div className="flex flex-wrap justify-center items-start gap-4">
           {trips.map((trip) => (
-            <TripCard key={trip._id} trip={trip} joinTrip={joinTrip} />
+            <TripCard key={trip._id} trip={trip} />
           ))}
         </div>
       </section>

@@ -1,11 +1,23 @@
-import { getServerSession } from "next-auth";
+"use client";
+// import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-const TripCard = async ({ trip, joinTrip }) => {
-  const session = await getServerSession();
-  console.log("session", session);
+const TripCard = ({ trip }) => {
+  // const session = useSession();
+  // console.log("session", session);
+  // console.log("trip", trip);
 
-  console.log(trip);
+  // const joinTrip = async () => {
+  //   const res = await fetch(`/api/trip/${trip._id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ userId: session.user.id }),
+  //   });
+  //   const data = await res.json();
+  //   console.log(data);
+  // };
 
   return (
     <div className="shadow-2xl rounded-lg w-[350px] overflow-hidden">
@@ -28,14 +40,6 @@ const TripCard = async ({ trip, joinTrip }) => {
           <span className="text-xl text-gray-700 font-semibold">
             Created by: {trip.createdBy.username}
           </span>
-          {/* <Image
-            src={trip.createdBy.profilePic}
-            alt={trip.createdBy.username}
-            width={50}
-            height={50}
-            style={{ width: "auto", height: "auto" }}
-            className="rounded-full"
-          /> */}
         </p>
         {trip.peoplejoined.length > 0 && (
           <p>{trip.peoplejoined.map((user) => user.username).join(", ")}</p>
