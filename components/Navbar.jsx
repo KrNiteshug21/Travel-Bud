@@ -27,14 +27,7 @@ export default function Navbar() {
         </Link>
         <div className={styles.navLinks}>
           {navigations.map((nav) => (
-            <Link
-              href={nav.src}
-              key={nav.id}
-              style={{
-                backgroundColor: path === nav.src ? "whitesmoke" : "inherit",
-                color: path === nav.src ? "#333" : "whitesmoke",
-              }}
-            >
+            <Link href={nav.src} key={nav.id}>
               {nav.title}
             </Link>
           ))}

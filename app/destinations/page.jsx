@@ -9,7 +9,7 @@ export default function DestinationPage() {
 
   // if (isLoading)
   //   return (
-  //     <div className="flex items-center justify-center gap-4 flex-wrap py-10 setWidth">
+  //     <div className="flex flex-wrap justify-center items-center gap-4 py-10 setWidth">
   //       {Array.from({ length: 8 }, (_, index) => index + 1).map((n) => (
   //         <CardSkeleton key={n} />
   //       ))}
@@ -19,23 +19,21 @@ export default function DestinationPage() {
   if (isError) return <div>Error: {error}</div>;
 
   return (
-    <>
-      <main className={styles.destinationPage}>
-        <div className={styles.destinationWrapper}>
-          <h1 className="text-3xl font-semibold text-center mb-4">
-            Destinations we offer assistance to.
-          </h1>
-          <section className={styles.destinationCardWrapper}>
-            {isLoading
-              ? Array.from({ length: 8 }, (_, index) => index + 1).map((n) => (
-                  <CardSkeleton key={n} />
-                ))
-              : destinations?.map((dest) => {
-                  return <DestinationCards key={dest._id} dest={dest} />;
-                })}
-          </section>
+    <main className="mt-4 mb-6">
+      <section className={styles.sectionWrapper}>
+        <h2 className="my-2 font-semibold text-2xl text-center">
+          Destinations we offer assistance to.
+        </h2>
+        <div className="flex flex-wrap justify-center items-start gap-4">
+          {isLoading
+            ? Array.from({ length: 8 }, (_, index) => index + 1).map((n) => (
+                <CardSkeleton key={n} />
+              ))
+            : destinations?.map((dest) => {
+                return <DestinationCards key={dest._id} dest={dest} />;
+              })}
         </div>
-      </main>
-    </>
+      </section>
+    </main>
   );
 }

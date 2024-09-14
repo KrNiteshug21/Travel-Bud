@@ -85,7 +85,7 @@ export default function LoginPage() {
           </div>
         </form>
 
-        <p className={styles.orPara}>Or</p>
+        <p className={styles.orPara}>or</p>
 
         <div className={styles.loginDiv}>
           <Link href="#" className={styles.loginWithFacebook}>
@@ -101,6 +101,18 @@ export default function LoginPage() {
             Login with Google
           </Link>
         </div>
+
+        <p className={styles.orPara}>or</p>
+
+        <p className="text-center text-lg">
+          <Link
+            className="text-blue-600 hover:underline cursor-pointer"
+            href={"/account/sign_up"}
+          >
+            Click here
+          </Link>{" "}
+          to create an account
+        </p>
       </div>
     </section>
   );

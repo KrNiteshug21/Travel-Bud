@@ -2,10 +2,24 @@ import Trip from "@/models/Trip";
 import connectDB from "@/lib/DBConn";
 import { NextResponse } from "next/server";
 
+import User from "@/models/User";
+
 export const GET = async (req, res) => {
   await connectDB();
 
-  const trips = await Trip.find();
+  const trips = await Trip.find({}).populate([
+    {
+      model: User,
+      path: createdBy,
+      select: "username email profilePic",
+    },
+    {
+      model: User,
+      path: peoplejoined,
+      select: "username email profilePic",
+    },
+  ]);
+
   if (!trips.length) {
     return NextResponse.json({ message: "No trips exist in database" });
   }
@@ -32,9 +46,8 @@ export const POST = async (req, res) => {
     !description ||
     !images ||
     !Array.isArray(images) ||
-    !travelCost ||
-    !peoplejoined ||
-    !createdBy
+    !travelCost
+    // || !createdBy
   ) {
     return NextResponse.json({ message: "Missing required data" });
   }

@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 export const GET = async (req, res) => {
   await connectDB();
-  const users = await User.find();
+  const users = await User.find().select("-password");
   return NextResponse.json(users, { status: 200 });
 };
 

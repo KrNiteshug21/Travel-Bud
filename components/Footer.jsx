@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -6,24 +7,24 @@ const Footer = () => {
       <div className={styles.footerWrapper}>
         <div className={styles.footerLinkWrapper}>
           <h3 className={styles.footerLinkHeading}>TRAVEL</h3>
-          <a href="#">How it Works</a>
-          <a href="#">Find a trip</a>
-          <a href="#">Create a trip</a>
+          <Link href="#">How it Works</Link>
+          <Link href="#">Find a trip</Link>
+          <Link href="/account/create_trip">Create a trip</Link>
         </div>
         <div className={styles.footerLinkWrapper}>
           <h3 className={styles.footerLinkHeading}>LATEST NEWS</h3>
-          <a href="#">Blog</a>
+          <Link href="#">Blog</Link>
         </div>
         <div className={styles.footerLinkWrapper}>
           <h3 className={styles.footerLinkHeading}>JOIN MY TRIP</h3>
-          <a href="#">About us</a>
-          <a href="#">Careers</a>
+          <Link href="#">About us</Link>
+          <Link href="#">Careers</Link>
         </div>
         <div className={styles.footerLinkWrapper}>
           <h3 className={styles.footerLinkHeading}>SUPPORT</h3>
-          <a href="#">Help & FAQ</a>
-          <a href="#">Travel Insurance</a>
-          <a href="#">Contact</a>
+          <Link href="#">Help & FAQ</Link>
+          <Link href="#">Travel Insurance</Link>
+          <Link href="#">Contact</Link>
         </div>
       </div>
     </footer>

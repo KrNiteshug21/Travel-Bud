@@ -3,7 +3,7 @@
   --py: 0.5rem;
   --rounded: 0.25rem;
   --rounded-md: 0.5rem;
-  --font-lg: 1.25rem;
+  --font-lg: 1.1rem;
   --font-xl: 1.5rem;
   max-width: min(calc(100% - 3rem), 1200px);
   margin-inline: auto;
@@ -92,7 +92,7 @@
 .orPara {
   margin-block: 1rem;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
 }
 
 .loginDiv {
@@ -105,7 +105,7 @@
 .loginWithGoogle {
   background-color: #0047ab;
   color: whitesmoke;
-  padding-block: 0.75rem;
+  padding-block: 0.5rem;
   border: none;
   border-radius: 0.25rem;
   display: flex;
@@ -113,10 +113,11 @@
   justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   border-radius: 0.25rem;
   overflow: hidden;
   position: relative;
+  margin-inline: 1.25rem;
 }
 
 .loginIcons {

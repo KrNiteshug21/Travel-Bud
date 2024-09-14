@@ -1,4 +1,5 @@
-import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import Trip from "@/models/Trip";
 
 export const useUsers = () => {
   const { data, error, isLoading, isError } = useQuery({
@@ -28,4 +29,34 @@ export const useDestinations = () => {
   });
 
   return { data, error, isLoading, isError };
+};
+
+export const getTrips = async () => {
+  const {
+    data: trips,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["Trip"],
+    queryFn: async () => {
+      await connectDB();
+      const trips = await Trip.find({}).populate([
+        {
+          model: User,
+          path: "createdBy",
+          select: "username email profilePic",
+        },
+        {
+          model: User,
+          path: "peoplejoined",
+          select: "username email profilePic",
+        },
+      ]);
+
+      return trips;
+    },
+  });
+
+  return { trips, isLoading, isError, error };
 };

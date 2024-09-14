@@ -6,7 +6,7 @@ export const GET = async (req, { params }) => {
   await connectDB();
   const userId = params.id;
 
-  const user = await User.findOne({ _id: userId }).exec();
+  const user = await User.findOne({ _id: userId }).select("-password").exec();
   if (!user) return NextResponse.json({ message: "User not found" });
   return NextResponse.json(user, { status: 200 });
 };

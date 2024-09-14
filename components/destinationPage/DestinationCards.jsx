@@ -1,32 +1,31 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 
 const BuddyCards = ({ dest }) => {
   return (
-    <article className="bg-slate-200 w-[350px] overflow-hidden rounded-lg shadow-md">
+    <div className="shadow-2xl rounded-lg w-[350px] overflow-hidden">
       <Image
         src={dest?.images[0]}
         alt={dest?.destinationName}
         width={350}
         height={300}
+        className="object-center object-cover"
+        style={{ width: "auto", height: "auto" }}
       />
-      <div className="flex flex-col gap-4 p-4 text-lg">
-        <h2 className="text-2xl font-semibold">
+      <div className="p-4 text-gray-500 space-y-4">
+        <h2 className="font-semibold text-2xl text-black/90">
           {dest?.destinationName}: {dest?.destinationTitle}
         </h2>
-        <p className="text-gray-500">{dest?.description}</p>
-        <p className="text-gray-500 flex justify-between pr-8">
+        <p className="">{dest?.description}</p>
+        <p className="flex justify-between pr-8 text-gray-500">
           <span>TravelCost:</span>{" "}
           <span> ₹{parseInt(dest?.travelcost) * 10}</span>
         </p>
 
-        <a href="#">
-          <button className="text-xl px-4 py-2 bg-black/80 text-white/90 rounded-md">
-            Join trip
-          </button>
-        </a>
+        <button className="bg-black/90 text-white py-2 px-4 rounded-lg">
+          Join trip
+        </button>
       </div>
-    </article>
+    </div>
   );
 };
 

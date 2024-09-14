@@ -38,6 +38,7 @@ export const OPTIONS = {
 
         const isSame = await bcrypt.compare(password, user.password);
         if (!isSame) return null;
+
         return user;
       },
     }),
@@ -45,7 +46,26 @@ export const OPTIONS = {
   pages: {
     signIn: "/account/sign_in",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH,
+
+  callbacks: {
+    async jwt({ token, account, profile, user }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+
+      console.log("jwt token", token);
+      console.log(user);
+
+      if (user) {
+        token.id = user._id;
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      session.user.id = token.id;
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(OPTIONS);
