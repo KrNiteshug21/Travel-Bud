@@ -14,7 +14,7 @@ const destObject = {
   travelCost: 0,
 };
 
-const createTripPage = () => {
+const CreateTripPage = () => {
   const [destination, setDestination] = useState(destObject);
   const { data: session } = useSession();
 
@@ -194,4 +194,4 @@ const createTripPage = () => {
   );
 };
 
-export default createTripPage;
+export default CreateTripPage;
