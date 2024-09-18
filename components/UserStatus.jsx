@@ -9,7 +9,9 @@ const UserStatus = () => {
   if (!session) {
     return (
       <>
-        <button onClick={() => signIn()}>Sign in</button>
+        <button className="hover:bg-white/20 rounded" onClick={() => signIn()}>
+          Sign in
+        </button>
       </>
     );
   }
@@ -19,7 +21,9 @@ const UserStatus = () => {
   return (
     <>
       {/* <p>Signed in as {session?.user?.email}</p> */}
-      <button onClick={() => signOut()}>Sign out</button>
+      <button className="hover:bg-white/20 rounded" onClick={() => signOut()}>
+        Sign out
+      </button>
     </>
   );
 };

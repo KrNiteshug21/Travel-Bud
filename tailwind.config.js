@@ -8,5 +8,10 @@ export default withUt({
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {},
+  extend: {
+    borderWidth: {
+      1: "1px",
+    },
+  },
   plugins: [],
 });

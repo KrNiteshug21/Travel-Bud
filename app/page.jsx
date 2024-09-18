@@ -25,6 +25,7 @@ export default function Home() {
               alt="Customer Expectations in Tourism"
               width={600}
               height={600}
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
         </section>

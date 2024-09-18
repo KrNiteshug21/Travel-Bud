@@ -21,13 +21,11 @@ export default async function TripPage() {
 
   if (!trips?.length) {
     return (
-      <>
-        <main>
-          <section className={styles.sectionWrapper}>
-            <h1>No trips exist in database</h1>
-          </section>
-        </main>
-      </>
+      <main>
+        <section className={styles.sectionWrapper}>
+          <h1>No trips exist in database</h1>
+        </section>
+      </main>
     );
   }
 
@@ -37,7 +35,10 @@ export default async function TripPage() {
         <h2 className="my-2 font-semibold text-2xl text-center">TripPage</h2>
         <div className="flex flex-wrap justify-center items-start gap-4">
           {trips.map((trip) => (
-            <TripCard key={trip._id} trip={trip} />
+            <TripCard
+              key={JSON.parse(JSON.stringify(trip._id))}
+              trip={JSON.parse(JSON.stringify(trip))}
+            />
           ))}
         </div>
       </section>

@@ -8,7 +8,7 @@ const Footer = () => {
         <div className={styles.footerLinkWrapper}>
           <h3 className={styles.footerLinkHeading}>TRAVEL</h3>
           <Link href="#">How it Works</Link>
-          <Link href="#">Find a trip</Link>
+          <Link href="/trips">Find a trip</Link>
           <Link href="/account/create_trip">Create a trip</Link>
         </div>
         <div className={styles.footerLinkWrapper}>
@@ -16,7 +16,7 @@ const Footer = () => {
           <Link href="#">Blog</Link>
         </div>
         <div className={styles.footerLinkWrapper}>
-          <h3 className={styles.footerLinkHeading}>JOIN MY TRIP</h3>
+          <h3 className={styles.footerLinkHeading}>Travel Buddy</h3>
           <Link href="#">About us</Link>
           <Link href="#">Careers</Link>
         </div>

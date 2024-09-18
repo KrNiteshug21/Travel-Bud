@@ -88,42 +88,6 @@ const CreateTripPage = () => {
             </div>
           </div>
 
-          {/* <div className={styles.flex}>
-            <div className={styles.inputDivs}>
-              <label className={styles.label} htmlFor="destination">
-                Destination{" "}
-              </label>
-              <input
-                className={styles.input}
-                type="text"
-                id="destination"
-                name="destination"
-                placeholder="Destination"
-              />
-              <IoLocation size={24} className={styles.icon} />
-            </div>
-            <div className={styles.inputDivs}>
-              <label className={styles.label} htmlFor="month">
-                Month of Travel{" "}
-              </label>
-              <select className={styles.select} name="month" id="month">
-                <option value="January">Choose travel month</option>
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
-            </div>
-          </div> */}
-
           <div className={styles.inputDivs}>
             <label className={styles.label} htmlFor="name">
               Description{" "}
@@ -158,13 +122,6 @@ const CreateTripPage = () => {
               }
             />
           </div>
-
-          {/* <div className={styles.inputDivs}>
-          <label className={styles.label} htmlFor="image">
-            Upload Image here
-          </label>
-          <input type="file" className={styles.fileInput} />
-        </div> */}
 
           <div>
             <UploadButton

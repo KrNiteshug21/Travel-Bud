@@ -1,23 +1,25 @@
 "use client";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { revalidatePath } from "next/cache";
 import Image from "next/image";
 
 const TripCard = ({ trip }) => {
-  // const session = useSession();
-  // console.log("session", session);
-  // console.log("trip", trip);
+  if (!trip) return null;
+  const session = useSession();
+  console.log("session", session);
 
-  // const joinTrip = async () => {
-  //   const res = await fetch(`/api/trip/${trip._id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ userId: session.user.id }),
-  //   });
-  //   const data = await res.json();
-  //   console.log(data);
-  // };
+  const joinTrip = async () => {
+    const res = await fetch(`/api/trip/${trip._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: session.data.user.id }),
+    });
+    const data = await res.json();
+    console.log(data);
+    revalidatePath("/trips", "page");
+  };
 
   return (
     <div className="shadow-2xl rounded-lg w-[350px] overflow-hidden">
@@ -38,13 +40,19 @@ const TripCard = ({ trip }) => {
         <p className="">{trip.description}</p>
         <p className="flex gap-4">
           <span className="text-xl text-gray-700 font-semibold">
-            Created by: {trip.createdBy.username}
+            Created by: {trip.createdBy?.username}
           </span>
         </p>
         {trip.peoplejoined.length > 0 && (
-          <p>{trip.peoplejoined.map((user) => user.username).join(", ")}</p>
+          <p>
+            People joined:{" "}
+            {trip.peoplejoined.map((user) => user.username).join(", ")}
+          </p>
         )}
-        <button className="bg-black/90 text-white py-2 px-4 rounded-lg">
+        <button
+          onClick={joinTrip}
+          className="bg-black/90 text-white py-2 px-4 rounded-lg"
+        >
           Join Trip
         </button>
       </div>

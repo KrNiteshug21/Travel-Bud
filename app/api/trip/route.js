@@ -46,11 +46,16 @@ export const POST = async (req, res) => {
     !description ||
     !images ||
     !Array.isArray(images) ||
-    !travelCost
-    // || !createdBy
+    !travelCost ||
+    !createdBy
   ) {
     return NextResponse.json({ message: "Missing required data" });
   }
+
+  const user = await User.findById(createdBy);
+  if (!user) return NextResponse.json({ message: "User not found" });
+  const foundTrip = await Trip.findOne({ destinationName });
+  if (foundTrip) return NextResponse.json({ message: "Trip already exists" });
 
   const trip = await Trip.create({
     destinationName,

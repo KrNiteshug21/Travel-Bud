@@ -1,11 +1,10 @@
 "use client";
 import Link from "next/link";
-import styles from "./page.module.css";
-import { MdAccountCircle } from "react-icons/md";
-import { usePathname } from "next/navigation";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { useRef, useState } from "react";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import UserStatus from "./UserStatus";
+import { usePathname } from "next/navigation";
 
 const navigations = [
   { id: 1, title: "User", src: "/users" },
@@ -20,33 +19,51 @@ export default function Navbar() {
   useOnClickOutside(ref, () => setShow(false));
 
   return (
-    <nav className={styles.navbar} ref={ref}>
-      <div className={styles.navbarWrapper}>
-        <Link href="/" style={{ color: "whitesmoke" }}>
-          <h1>Travel Buddy</h1>
+    <nav
+      className="top-0 z-10 sticky bg-black/90 p-2 w-full h-full min-h-fit-content text-white"
+      ref={ref}
+    >
+      <div className="flex justify-between items-center">
+        <Link className="no-underline" href="/" style={{ color: "whitesmoke" }}>
+          <h1 className="text-3xl">Travel Buddy</h1>
         </Link>
-        <div className={styles.navLinks}>
+
+        <div className="sm:flex sm:gap-2 hidden sm:text-2xl">
           {navigations.map((nav) => (
-            <Link href={nav.src} key={nav.id}>
+            <Link
+              className="hover:bg-white/20 px-2 py-1 rounded h-full"
+              href={nav.src}
+              key={nav.id}
+            >
               {nav.title}
             </Link>
           ))}
-          {/* <div className={styles.accountWrapper}>
-            <button
-              onClick={() => setShow(!show)}
-              onMouseEnter={() => setShow(true)}
-            >
-              <MdAccountCircle size={26} />
-            </button>
-            {show && (
-              <div className={styles.popup}>
-                <Link href="/account/sign_up">Sign up</Link>
-                <Link href="/account/sign_in">Sign in</Link>
-                <Link href="/account/create_trip">Create Trip</Link>
-              </div>
-            )}
-          </div> */}
           <UserStatus />
+        </div>
+        <div className="block sm:hidden">
+          <RxHamburgerMenu size={30} onClick={() => setShow(true)} />
+          {show && (
+            <div className="absolute top-0 p-4 right-0 h-screen w-max bg-white text-black text-2xl">
+              <RxCross2
+                className="ml-auto"
+                size={30}
+                onClick={() => setShow(false)}
+              />
+              <div className="flex gap-4 flex-col items-start ">
+                {navigations.map((nav) => (
+                  <Link
+                    onClick={() => path != nav.src && setShow(false)}
+                    className=""
+                    href={nav.src}
+                    key={nav.id}
+                  >
+                    {nav.title}
+                  </Link>
+                ))}
+                <UserStatus />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </nav>

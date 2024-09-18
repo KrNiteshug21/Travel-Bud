@@ -1,6 +1,43 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 const BuddyCards = ({ dest }) => {
+  const session = useSession();
+
+  const createTrip = async () => {
+    const {
+      destinationName,
+      destinationTitle,
+      description,
+      images,
+      travelcost,
+    } = dest;
+    console.log("session", session);
+    const response = await fetch(`/api/trip`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        destinationName,
+        destinationTitle,
+        description,
+        images,
+        travelCost: travelcost,
+        peoplejoined: [],
+        createdBy: session.data?.user?.id,
+      }),
+    });
+
+    console.log("response", response);
+    if (!response.ok) alert("Network response was not ok");
+    if (response.status === 200)
+      alert(`${destinationName} created as trip successfully`);
+
+    return response.json();
+  };
+
   return (
     <div className="shadow-2xl rounded-lg w-[350px] overflow-hidden">
       <Image
@@ -21,8 +58,11 @@ const BuddyCards = ({ dest }) => {
           <span> ₹{parseInt(dest?.travelcost) * 10}</span>
         </p>
 
-        <button className="bg-black/90 text-white py-2 px-4 rounded-lg">
-          Join trip
+        <button
+          onClick={createTrip}
+          className="bg-black/90 text-white py-2 px-4 rounded-lg"
+        >
+          Create Trip
         </button>
       </div>
     </div>
