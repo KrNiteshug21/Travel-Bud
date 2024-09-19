@@ -1,6 +1,5 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import CardSkeleton from "../skeletons/CardSkeleton";
 
@@ -19,7 +18,8 @@ const TripCard = ({ trip }) => {
     });
     const data = await res.json();
     console.log("data", data);
-    revalidatePath("/trips", "page");
+    alert(data.message);
+    window.location.reload();
   };
 
   const deleteTrip = async () => {
@@ -36,6 +36,7 @@ const TripCard = ({ trip }) => {
     const data = await res.json();
     console.log("data", data);
     alert(data.message);
+    window.location.reload();
   };
 
   return (

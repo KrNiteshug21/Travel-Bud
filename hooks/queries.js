@@ -32,12 +32,7 @@ export const useDestinations = () => {
 };
 
 export const getTrips = async () => {
-  const {
-    data: trips,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["Trip"],
     queryFn: async () => {
       await connectDB();
@@ -58,5 +53,5 @@ export const getTrips = async () => {
     },
   });
 
-  return { trips, isLoading, isError, error };
+  return { data, isLoading, isError, error };
 };
