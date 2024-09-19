@@ -1,25 +1,24 @@
 "use client";
-import { useSession } from "next-auth/react";
-import { revalidatePath } from "next/cache";
+// import { useSession } from "next-auth/react";
+// import { revalidatePath } from "next/cache";
 import Image from "next/image";
 
 const TripCard = ({ trip }) => {
-  if (!trip) return null;
-  const session = useSession();
-  console.log("session", session);
+  // const session = useSession();
+  // console.log("session", session);
 
-  const joinTrip = async () => {
-    const res = await fetch(`/api/trip/${trip._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: session.data.user.id }),
-    });
-    const data = await res.json();
-    console.log(data);
-    revalidatePath("/trips", "page");
-  };
+  // const joinTrip = async () => {
+  //   const res = await fetch(`/api/trip/${trip._id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ userId: session.data.user.id }),
+  //   });
+  //   const data = await res.json();
+  //   console.log(data);
+  //   revalidatePath("/trips", "page");
+  // };
 
   return (
     <div className="shadow-2xl rounded-lg w-[350px] overflow-hidden">
@@ -49,12 +48,12 @@ const TripCard = ({ trip }) => {
             {trip.peoplejoined.map((user) => user.username).join(", ")}
           </p>
         )}
-        <button
+        {/* <button
           onClick={joinTrip}
           className="bg-black/90 text-white py-2 px-4 rounded-lg"
         >
           Join Trip
-        </button>
+        </button> */}
       </div>
     </div>
   );
