@@ -1,6 +1,7 @@
 import connectDB from "@/lib/DBConn";
 import Trip from "@/models/Trip";
 import User from "@/models/User";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export const PATCH = async (req, { params }) => {
@@ -11,6 +12,7 @@ export const PATCH = async (req, { params }) => {
   const trip = await Trip.findById(tripId).exec();
   if (!trip)
     return NextResponse.status(500).json({ message: "Trip not found!" });
+
   const user = await User.findById(userId).exec();
   if (!user)
     return NextResponse.status(500).json({ message: "User not found!" });
@@ -20,5 +22,29 @@ export const PATCH = async (req, { params }) => {
 
   return NextResponse.json({
     message: `${user.username} joined trip to ${trip.destinationName}`,
+  });
+};
+
+export const DELETE = async (req, { params }) => {
+  await connectDB();
+  const { id: tripId } = params;
+  const { createdBy, userId } = await req.json();
+
+  if (createdBy !== userId)
+    return NextResponse.status(401).json({
+      message: "User unauthorized to delete trip!",
+    });
+
+  const trip = await Trip.findById(tripId).exec();
+  if (!trip)
+    return NextResponse.status(500).json({ message: "Trip not found!" });
+
+  revalidatePath("/trips", "page");
+
+  await trip.deleteOne();
+  return NextResponse.json({
+    revalidated: true,
+    status: 200,
+    message: "Trip deleted successfully",
   });
 };

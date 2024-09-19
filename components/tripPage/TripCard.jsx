@@ -5,9 +5,9 @@ import Image from "next/image";
 import CardSkeleton from "../skeletons/CardSkeleton";
 
 const TripCard = ({ trip }) => {
-  if (!trip) return <CardSkeleton />;
   const session = useSession();
   console.log("session", session);
+  if (session.status === "loading" || !trip) return <CardSkeleton />;
 
   const joinTrip = async () => {
     const res = await fetch(`/api/trip/${trip._id}`, {
@@ -18,8 +18,24 @@ const TripCard = ({ trip }) => {
       body: JSON.stringify({ userId: session.data.user.id }),
     });
     const data = await res.json();
-    console.log(data);
+    console.log("data", data);
     revalidatePath("/trips", "page");
+  };
+
+  const deleteTrip = async () => {
+    const res = await fetch(`/api/trip/${trip._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        createdBy: trip.createdBy._id,
+        userId: session.data.user.id,
+      }),
+    });
+    const data = await res.json();
+    console.log("data", data);
+    alert(data.message);
   };
 
   return (
@@ -50,12 +66,20 @@ const TripCard = ({ trip }) => {
             {trip.peoplejoined.map((user) => user.username).join(", ")}
           </p>
         )}
-        <button
-          onClick={joinTrip}
-          className="bg-black/90 text-white py-2 px-4 rounded-lg"
-        >
-          Join Trip
-        </button>
+        <div className="flex items-center justify-between ">
+          <button
+            onClick={joinTrip}
+            className="bg-blue-600 hover:bg-blue-900 text-white py-2 px-4 rounded-lg"
+          >
+            Join Trip
+          </button>
+          <button
+            onClick={deleteTrip}
+            className="bg-red-700 hover:bg-red-900 text-white py-2 px-4 rounded-lg"
+          >
+            Delete Trip
+          </button>
+        </div>
       </div>
     </div>
   );
