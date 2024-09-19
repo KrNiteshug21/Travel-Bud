@@ -31,7 +31,6 @@ export default function RegisterPage() {
     e.preventDefault();
     const user = createUser();
     if (user) alert(`${user.username} created successfully`);
-    console.log(username, email, password, image);
     setUsername("");
     setEmail("");
     setPassword("");
@@ -106,7 +105,6 @@ export default function RegisterPage() {
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-                console.log("Files: ", res);
                 setImage(res[0].url);
                 alert("Upload Completed");
               }}

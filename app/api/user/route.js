@@ -20,12 +20,10 @@ export const POST = async (req, res) => {
 
   const duplicateUsername = await User.find({ username });
   if (duplicateUsername?.length) {
-    console.log(duplicateUsername);
     return NextResponse.json({ message: "Username already exists!" });
   }
   const duplicateMail = await User.find({ email });
   if (duplicateMail?.length) {
-    console.log(duplicateMail);
     return NextResponse.json({ message: "Email already exists!" });
   }
 

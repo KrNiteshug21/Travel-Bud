@@ -14,7 +14,6 @@ export const PATCH = async (req, { params }) => {
   const user = await User.findById(userId).exec();
   if (!user)
     return NextResponse.status(500).json({ message: "User not found!" });
-  console.log("trip", trip);
 
   trip.peoplejoined.push(userId);
   await trip.save();

@@ -13,7 +13,7 @@ const BuddyCards = ({ dest }) => {
       images,
       travelcost,
     } = dest;
-    console.log("session", session);
+
     const response = await fetch(`/api/trip`, {
       method: "POST",
       headers: {
@@ -30,7 +30,6 @@ const BuddyCards = ({ dest }) => {
       }),
     });
 
-    console.log("response", response);
     if (!response.ok) alert("Network response was not ok");
     if (response.status === 200)
       alert(`${destinationName} created as trip successfully`);

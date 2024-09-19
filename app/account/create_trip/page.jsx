@@ -36,9 +36,6 @@ const CreateTripPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const dest = await createTrip();
-    console.log(destination);
-
-    console.log(dest);
     setDestination(destObject);
   };
 
@@ -127,7 +124,6 @@ const CreateTripPage = () => {
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-                console.log("Files: ", res);
                 setDestination({
                   ...destination,
                   images: res.map((file) => file.url),
