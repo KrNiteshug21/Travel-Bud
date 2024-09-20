@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req, res) => {
   await connectDB();
-
   const destinations = await Destination.find();
   return NextResponse.json(destinations, { status: 200 });
 };

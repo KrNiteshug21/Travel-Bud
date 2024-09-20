@@ -19,7 +19,7 @@ const TripCard = ({ trip }) => {
     });
     const data = await res.json();
     console.log("data", data);
-    revalidatePath("/trips", "page");
+    window.location.reload();
   };
 
   const deleteTrip = async () => {

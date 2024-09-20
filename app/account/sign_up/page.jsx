@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import { IoPerson, IoEyeOffSharp, IoEyeSharp, IoMail } from "react-icons/io5";
 import { UploadButton } from "@/hooks/uploadthing";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [showPwd, setShowPwd] = useState(false);
@@ -10,6 +11,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null);
+  const router = useRouter();
 
   const createUser = async () => {
     const response = await fetch(`/api/user`, {
@@ -34,6 +36,8 @@ export default function RegisterPage() {
     setUsername("");
     setEmail("");
     setPassword("");
+    setImage(null);
+    router.push("/account/sign_in");
   };
 
   return (

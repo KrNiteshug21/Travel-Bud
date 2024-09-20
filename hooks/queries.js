@@ -35,21 +35,11 @@ export const getTrips = async () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["Trip"],
     queryFn: async () => {
-      await connectDB();
-      const trips = await Trip.find({}).populate([
-        {
-          model: User,
-          path: "createdBy",
-          select: "username email profilePic",
-        },
-        {
-          model: User,
-          path: "peoplejoined",
-          select: "username email profilePic",
-        },
-      ]);
-
-      return trips;
+      const response = await fetch(`/api/trip`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
     },
   });
 

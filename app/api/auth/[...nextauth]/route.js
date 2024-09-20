@@ -6,6 +6,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import connectDB from "@/lib/DBConn";
 import bcrypt from "bcrypt";
 
+async function handler(req, res) {
+  return await NextAuth(req, res, OPTIONS);
+}
+
 export const OPTIONS = {
   providers: [
     GitHubProvider({
@@ -35,6 +39,7 @@ export const OPTIONS = {
         const { email, password } = credentials;
         if (!email || !password) return null;
         const user = await User.findOne({ email });
+        if (!user) return null;
 
         const isSame = await bcrypt.compare(password, user.password);
         if (!isSame) return null;
@@ -64,6 +69,6 @@ export const OPTIONS = {
   },
 };
 
-const handler = NextAuth(OPTIONS);
+// const handler = NextAuth(OPTIONS);
 
 export { handler as GET, handler as POST };
