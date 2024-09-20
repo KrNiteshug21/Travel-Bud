@@ -5,24 +5,19 @@ import User from "@/models/User";
 import TripCard from "@/components/tripPage/TripCard";
 
 export default async function TripPage() {
-  let trips = [];
-  try {
-    await connectDB();
-    trips = await Trip.find({}).populate([
-      {
-        model: User,
-        path: "createdBy",
-        select: "username email profilePic",
-      },
-      {
-        model: User,
-        path: "peoplejoined",
-        select: "username email profilePic",
-      },
-    ]);
-  } catch (error) {
-    console.log(error);
-  }
+  await connectDB();
+  const trips = await Trip.find({}).populate([
+    {
+      model: User,
+      path: "createdBy",
+      select: "username email profilePic",
+    },
+    {
+      model: User,
+      path: "peoplejoined",
+      select: "username email profilePic",
+    },
+  ]);
 
   if (!trips?.length) {
     return (

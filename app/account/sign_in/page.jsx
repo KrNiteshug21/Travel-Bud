@@ -87,7 +87,7 @@ export default function LoginPage() {
 
         <p className={styles.orPara}>or</p>
 
-        <div className={styles.loginDiv}>
+        {/* <div className={styles.loginDiv}>
           <Link href="#" className={styles.loginWithFacebook}>
             <span className={styles.loginIcons}>
               <FaFacebook size={24} />
@@ -100,9 +100,9 @@ export default function LoginPage() {
             </span>
             Login with Google
           </Link>
-        </div>
+        </div> */}
 
-        <p className={styles.orPara}>or</p>
+        {/* <p className={styles.orPara}>or</p> */}
 
         <p className="text-center text-lg">
           <Link
