@@ -1,8 +1,7 @@
+import User from "@/models/User";
 import Trip from "@/models/Trip";
 import connectDB from "@/lib/DBConn";
 import { NextResponse } from "next/server";
-
-import User from "@/models/User";
 
 export const GET = async (req, res) => {
   await connectDB();
@@ -10,19 +9,15 @@ export const GET = async (req, res) => {
   const trips = await Trip.find({}).populate([
     {
       model: User,
-      path: createdBy,
+      path: "createdBy",
       select: "username email profilePic",
     },
     {
       model: User,
-      path: peoplejoined,
+      path: "peoplejoined",
       select: "username email profilePic",
     },
   ]);
-
-  if (!trips.length) {
-    return NextResponse.json({ message: "No trips exist in database" });
-  }
 
   return NextResponse.json(trips);
 };

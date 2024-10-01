@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import Trip from "@/models/Trip";
 
 export const useUsers = () => {
   const { data, error, isLoading, isError } = useQuery({

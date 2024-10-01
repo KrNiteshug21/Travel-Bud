@@ -1,46 +1,53 @@
+"use client";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import connectDB from "@/lib/DBConn";
-import Trip from "@/models/Trip";
-import User from "@/models/User";
 import TripCard from "@/components/tripPage/TripCard";
+import CardSkeleton from "@/components/skeletons/CardSkeleton";
 
-export default async function TripPage() {
-  await connectDB();
-  const trips = await Trip.find({}).populate([
-    {
-      model: User,
-      path: "createdBy",
-      select: "username email profilePic",
-    },
-    {
-      model: User,
-      path: "peoplejoined",
-      select: "username email profilePic",
-    },
-  ]);
+export default function TripPage() {
+  const [trips, setTrips] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (!trips?.length) {
+  useEffect(() => {
+    const fetchTrips = async () => {
+      const response = await fetch("/api/trip");
+      if (!response.ok) {
+        alert("Network response was not ok");
+        return;
+      }
+
+      const data = await response.json();
+      setTrips(data);
+      setIsLoading(false);
+    };
+
+    fetchTrips();
+  }, []);
+
+  if (isLoading)
     return (
-      <main>
-        <section className={styles.sectionWrapper}>
-          <h1>No trips exist in database</h1>
-        </section>
-      </main>
+      <section className={styles.sectionWrapper}>
+        <div className="flex flex-wrap justify-center items-center gap-4 py-10 setWidth">
+          {Array.from({ length: 6 }, (_, index) => index + 1).map((n) => (
+            <CardSkeleton key={n} />
+          ))}
+        </div>
+      </section>
     );
-  }
+
+  if (!trips) return <p>No trips available</p>;
 
   return (
     <main className="mt-4 mb-6">
       <section className={styles.sectionWrapper}>
         <h2 className="my-2 font-semibold text-2xl text-center">TripPage</h2>
         <div className="flex flex-wrap justify-center items-start gap-4">
-          {trips &&
-            trips.map((trip) => (
-              <TripCard
-                key={JSON.parse(JSON.stringify(trip._id))}
-                trip={JSON.parse(JSON.stringify(trip))}
-              />
-            ))}
+          {trips.map((trip) => (
+            <TripCard
+              key={JSON.parse(JSON.stringify(trip._id))}
+              trip={JSON.parse(JSON.stringify(trip))}
+            />
+          ))}
         </div>
       </section>
     </main>

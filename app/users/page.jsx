@@ -15,7 +15,7 @@ export default function UsersPage() {
         <h1 className="mb-4 font-semibold text-3xl text-center">Users</h1>
         <section className={styles.userCardWrapper}>
           {isLoading
-            ? Array.from({ length: 8 }, (_, index) => index + 1).map((n) => (
+            ? Array.from({ length: 6 }, (_, index) => index + 1).map((n) => (
                 <CardSkeleton key={n} />
               ))
             : users?.map((user) => {
