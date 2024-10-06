@@ -1,15 +1,20 @@
 "use client";
+import styles from "./page.module.css";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 const UserStatus = () => {
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
 
   if (!session) {
     return (
       <>
-        <button className="hover:bg-white/20 rounded" onClick={() => signIn()}>
-          Sign in
+        <button className={styles.navBtn}>
+          <Link href="/account/sign_up">Sign up</Link>
+        </button>
+        <button className={styles.navBtn} onClick={() => signIn()}>
+          Log in
         </button>
       </>
     );
@@ -20,7 +25,7 @@ const UserStatus = () => {
   return (
     <>
       {/* <p>Signed in as {session?.user?.email}</p> */}
-      <button className="hover:bg-white/20 rounded" onClick={() => signOut()}>
+      <button className={styles.navBtn} onClick={() => signOut()}>
         Sign out
       </button>
     </>

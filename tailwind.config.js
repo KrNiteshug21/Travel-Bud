@@ -7,11 +7,16 @@ export default withUt({
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
-  extend: {
-    borderWidth: {
-      1: "1px",
+  theme: {
+    extend: {
+      colors: {
+        primaryDarkBlue: "#14142e",
+      },
+      borderWidth: {
+        1: "1px",
+      },
     },
   },
+  extend: {},
   plugins: [],
 });

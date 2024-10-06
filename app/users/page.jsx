@@ -10,10 +10,10 @@ export default function UsersPage() {
   if (isError) return <div>Error: {error}</div>;
 
   return (
-    <main className={styles.userPage}>
-      <div className={styles.userWrapper}>
+    <main className="mt-16">
+      <div className="mx-auto px-2 max-w-screen-xl">
         <h1 className="mb-4 font-semibold text-3xl text-center">Users</h1>
-        <section className={styles.userCardWrapper}>
+        <section className="flex flex-wrap justify-center gap-6">
           {isLoading
             ? Array.from({ length: 6 }, (_, index) => index + 1).map((n) => (
                 <CardSkeleton key={n} />

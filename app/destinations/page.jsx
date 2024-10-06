@@ -21,7 +21,7 @@ export default function DestinationPage() {
   if (isError) return <div>Error: {error}</div>;
 
   return (
-    <main className="mt-4 mb-6">
+    <main className="mt-16 mb-6">
       <section className={styles.sectionWrapper}>
         <h2 className="my-2 font-semibold text-2xl text-center">
           Destinations we offer assistance to.

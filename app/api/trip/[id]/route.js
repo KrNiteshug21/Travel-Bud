@@ -3,6 +3,27 @@ import Trip from "@/models/Trip";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
 
+export const GET = async (req, { params }) => {
+  await connectDB();
+  const { id: tripId } = params;
+  const trip = await Trip.findById(tripId).populate([
+    {
+      model: User,
+      path: "createdBy",
+      select: "username email profilePic",
+    },
+    {
+      model: User,
+      path: "peoplejoined",
+      select: "username email profilePic",
+    },
+  ]);
+  if (!trip)
+    return NextResponse.json({ status: 500, message: "Trip not found!" });
+
+  return NextResponse.json(trip);
+};
+
 export const PATCH = async (req, { params }) => {
   await connectDB();
   const { id: tripId } = params;

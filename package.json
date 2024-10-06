@@ -13,6 +13,7 @@
     "@tanstack/react-query-devtools": "^5.44.0",
     "@uploadthing/react": "^6.8.0",
     "bcrypt": "^5.1.1",
+    "framer-motion": "^11.11.1",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
     "next": "^14.2.4",
@@ -20,7 +21,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
-    "react-responsive-masonry": "^2.3.0",
     "uploadthing": "^6.13.3"
   },
   "devDependencies": {

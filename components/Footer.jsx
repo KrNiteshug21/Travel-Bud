@@ -1,31 +1,51 @@
 import styles from "./page.module.css";
 import Link from "next/link";
 
+const footers = [
+  {
+    head: "TRAVEL",
+    links: [
+      { title: "How it Works", src: "/#working" },
+      { title: "Find a trip", src: "/trips" },
+      { title: "Create a trip", src: "/account/create_trip" },
+    ],
+  },
+  { head: "LATEST NEWS", links: [{ title: "Blog", src: "#" }] },
+  {
+    head: "Travel Buddy",
+    links: [
+      { title: "About us", src: "#" },
+      { title: "Careers", src: "#" },
+    ],
+  },
+  {
+    head: "SUPPORT",
+    links: [
+      { title: "Help & FAQ", src: "#" },
+      { title: "Travel Insurance", src: "#" },
+      { title: "Contact", src: "#" },
+    ],
+  },
+];
+
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className="bg-primaryDarkBlue text-white/90">
       <div className={styles.footerWrapper}>
-        <div className={styles.footerLinkWrapper}>
-          <h3 className={styles.footerLinkHeading}>TRAVEL</h3>
-          <Link href="#">How it Works</Link>
-          <Link href="/trips">Find a trip</Link>
-          <Link href="/account/create_trip">Create a trip</Link>
-        </div>
-        <div className={styles.footerLinkWrapper}>
-          <h3 className={styles.footerLinkHeading}>LATEST NEWS</h3>
-          <Link href="#">Blog</Link>
-        </div>
-        <div className={styles.footerLinkWrapper}>
-          <h3 className={styles.footerLinkHeading}>Travel Buddy</h3>
-          <Link href="#">About us</Link>
-          <Link href="#">Careers</Link>
-        </div>
-        <div className={styles.footerLinkWrapper}>
-          <h3 className={styles.footerLinkHeading}>SUPPORT</h3>
-          <Link href="#">Help & FAQ</Link>
-          <Link href="#">Travel Insurance</Link>
-          <Link href="#">Contact</Link>
-        </div>
+        {footers.map((footer, index) => {
+          return (
+            <div key={index} className={styles.footerLinkWrapper}>
+              <h3 className={styles.footerLinkHeading}>{footer.head}</h3>
+              {footer.links.map((link, i) => {
+                return (
+                  <Link key={`${index}+${i}`} href={link.src}>
+                    {link.title}
+                  </Link>
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
     </footer>
   );
