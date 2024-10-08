@@ -1,4 +1,5 @@
 "use client";
+import ButtonAnimation from "@/Anim/ButtonAnimation";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import {
@@ -31,6 +32,38 @@ const TripDetail = ({ params }) => {
 
     fetchTrip();
   }, [id]);
+
+  const joinTrip = async () => {
+    const res = await fetch(`/api/trip/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: session.data.user.id }),
+    });
+    const data = await res.json();
+    if (data.status === 500) return alert(data.message);
+    console.log("data", data);
+    if (data.status === 200) alert(data.message);
+    // window.location.reload();
+  };
+
+  const deleteTrip = async () => {
+    const res = await fetch(`/api/trip/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        createdBy: trip.createdBy._id,
+        userId: session.data.user.id,
+      }),
+    });
+    const data = await res.json();
+    console.log("data", data);
+    alert(data.message);
+    if (data.revalidated) window.location.reload();
+  };
 
   if (!trip)
     return (
@@ -107,6 +140,18 @@ const TripDetail = ({ params }) => {
               {trip.peoplejoined.map((user) => user.username).join(", ")}
             </p>
           )}
+          <div className="flex items-center gap-4">
+            <ButtonAnimation
+              text="Join Trip"
+              clickFunction={joinTrip}
+              className="bg-blue-600 hover:bg-blue-900 px-4 py-2 rounded-lg text-white"
+            />
+            <ButtonAnimation
+              text="Delete Trip"
+              clickFunction={deleteTrip}
+              className="bg-red-700 hover:bg-red-900 px-4 py-2 rounded-lg text-white"
+            />
+          </div>
         </div>
       </div>
     </section>
