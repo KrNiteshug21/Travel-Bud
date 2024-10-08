@@ -21,7 +21,11 @@ export const GET = async (req, { params }) => {
   if (!trip)
     return NextResponse.json({ status: 500, message: "Trip not found!" });
 
-  return NextResponse.json(trip);
+  return NextResponse.json({
+    trip,
+    status: 200,
+    message: "You joined the Trip",
+  });
 };
 
 export const PATCH = async (req, { params }) => {
@@ -37,6 +41,12 @@ export const PATCH = async (req, { params }) => {
   if (!user)
     return NextResponse.json({ status: 500, message: "User not found!" });
 
+  const isUserJoined = trip.peoplejoined.includes(userId);
+  if (isUserJoined)
+    return NextResponse.json({
+      status: 500,
+      message: "You are already part of the trip!",
+    });
   trip.peoplejoined.push(userId);
   await trip.save();
 

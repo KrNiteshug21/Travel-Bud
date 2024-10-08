@@ -1,4 +1,5 @@
 "use client";
+import { ThemeProvider } from "next-themes";
 
 import { SessionProvider } from "next-auth/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -8,12 +9,14 @@ const queryClient = new QueryClient();
 
 const Wrapper = ({ session, children }) => {
   return (
-    <SessionProvider session={session}>
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </SessionProvider>
+    <ThemeProvider attribute="class">
+      <SessionProvider session={session}>
+        <QueryClientProvider client={queryClient}>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </SessionProvider>
+    </ThemeProvider>
   );
 };
 

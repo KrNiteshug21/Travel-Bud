@@ -4,7 +4,6 @@ import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { useRef, useState } from "react";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import UserStatus from "./UserStatus";
-import { usePathname } from "next/navigation";
 import styles from "./page.module.css";
 
 const navigations = [
@@ -14,7 +13,6 @@ const navigations = [
 ];
 
 export default function Navbar() {
-  const path = usePathname();
   const [show, setShow] = useState(false);
   const ref = useRef();
   useOnClickOutside(ref, () => setShow(false));

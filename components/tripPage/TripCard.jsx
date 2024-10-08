@@ -4,10 +4,10 @@ import Image from "next/image";
 import CardSkeleton from "../skeletons/CardSkeleton";
 import CardAnimation from "@/Anim/CardAnimation";
 import Link from "next/link";
+import ButtonAnimation from "@/Anim/ButtonAnimation";
 
 const TripCard = ({ trip }) => {
   const session = useSession();
-  console.log("session", session);
   if (session.status === "loading" || !trip) return <CardSkeleton />;
 
   const joinTrip = async () => {
@@ -19,8 +19,10 @@ const TripCard = ({ trip }) => {
       body: JSON.stringify({ userId: session.data.user.id }),
     });
     const data = await res.json();
+    if (data.status === 500) return alert(data.message);
     console.log("data", data);
-    window.location.reload();
+    if (data.status === 200) alert(data.message);
+    // window.location.reload();
   };
 
   const deleteTrip = async () => {
@@ -43,14 +45,13 @@ const TripCard = ({ trip }) => {
   return (
     <CardAnimation>
       <div className="shadow-2xl rounded-lg w-[350px] overflow-hidden">
-        <div>
+        <div className="overflow-hidden">
           <Image
             src={trip.images[0]}
             alt={trip.destinationName}
             width={350}
             height={350}
-            className="object-center object-cover"
-            style={{ width: "auto", height: "auto" }}
+            className="object-center object-cover w-full h-full transform hover:duration-500 cursor-pointer hover:scale-110 "
           />
         </div>
         <div className="p-4 text-gray-500 space-y-4">
@@ -61,18 +62,16 @@ const TripCard = ({ trip }) => {
           </h2>
           <p className="">{trip.description}</p>
           <div className="flex items-center justify-between ">
-            <button
-              onClick={joinTrip}
-              className="bg-blue-600 hover:bg-blue-900 text-white py-2 px-4 rounded-lg"
-            >
-              Join Trip
-            </button>
-            <button
-              onClick={deleteTrip}
+            <ButtonAnimation
+              text="Join Trip"
+              clickFunction={joinTrip}
+              className="bg-blue-600 hover:bg-blue-900 px-4 py-2 rounded-lg text-white"
+            />
+            <ButtonAnimation
+              text="Delete Trip"
+              clickFunction={deleteTrip}
               className="bg-red-700 hover:bg-red-900 text-white py-2 px-4 rounded-lg"
-            >
-              Delete Trip
-            </button>
+            />
           </div>
         </div>
       </div>

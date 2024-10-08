@@ -29,14 +29,17 @@ const travelWithUsData = [
 
 const TravelSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-200px", once: true });
+  const isInView = useInView(ref, { margin: "-400px", once: true });
 
   return (
-    <section ref={ref} className="py-20">
+    <section className="py-20">
       <h1 className="mx-auto mb-8 w-max font-semibold text-3xl tracking-wider">
         <TextRevealAnimation isInView={isInView} text="Why Travel With Us" />
       </h1>
-      <div className="flex flex-wrap justify-around items-start gap-4">
+      <div
+        ref={ref}
+        className="flex flex-wrap justify-around items-start gap-4"
+      >
         {travelWithUsData.map((data) => (
           <Cards isInView={isInView} key={data.id} data={data} />
         ))}

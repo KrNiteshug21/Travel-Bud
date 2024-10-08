@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "./page.module.css";
 import TripCard from "@/components/tripPage/TripCard";
 import CardSkeleton from "@/components/skeletons/CardSkeleton";
 
@@ -30,8 +29,8 @@ export default function TripPage() {
 
   if (isLoading)
     return (
-      <section className={styles.sectionWrapper}>
-        <div className="flex flex-wrap justify-center items-center gap-4 mt-16 py-10 setWidth">
+      <section className="mx-auto mt-16 max-w-screen-xl min-h-screen">
+        <div className="flex flex-wrap justify-center items-center gap-4 mt-16 py-10">
           {Array.from({ length: 6 }, (_, index) => index + 1).map((n) => (
             <CardSkeleton key={n} />
           ))}
@@ -43,7 +42,7 @@ export default function TripPage() {
 
   return (
     <main className="mt-16 mb-6">
-      <section className={styles.sectionWrapper}>
+      <section className="mx-auto mt-16 max-w-screen-xl min-h-screen">
         <div className="flex justify-center items-center gap-8 mb-4">
           <h2 className="my-2 font-semibold text-2xl text-center">TripPage</h2>
           <input

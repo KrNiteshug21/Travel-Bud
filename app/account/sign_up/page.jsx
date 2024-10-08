@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
-import styles from "./page.module.css";
 import { IoPerson, IoEyeOffSharp, IoEyeSharp, IoMail } from "react-icons/io5";
 import { UploadButton } from "@/hooks/uploadthing";
 import { useRouter } from "next/navigation";
+import ButtonAnimation from "@/Anim/ButtonAnimation";
+import Image from "next/image";
 
 export default function RegisterPage() {
   const [showPwd, setShowPwd] = useState(false);
@@ -41,16 +42,16 @@ export default function RegisterPage() {
   };
 
   return (
-    <section className={styles.sectionWrapper}>
-      <div className={styles.sectionContainer}>
-        <h2 className={styles.heading}>Sign up!</h2>
-        <form onSubmit={handleSubmit} className={styles.formContainer}>
-          <div className={styles.inputDivs}>
-            <label className={styles.label} htmlFor="username">
+    <section className="flex justify-center items-center mx-auto max-w-screen-xl min-h-screen">
+      <div className="flex-auto border-2 backdrop-blur-md p-4 rounded-lg max-w-md">
+        <h2 className="mb-4 font-semibold text-2xl text-center">Sign up!</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div className="relative flex flex-auto justify-between w-full">
+            <label className="hidden" htmlFor="username">
               Username{" "}
             </label>
             <input
-              className={styles.input}
+              className="border-gray-500 shadow px-3 py-2 border-b-2 rounded w-full text-lg outline-none"
               type="text"
               id="username"
               name="username"
@@ -58,15 +59,18 @@ export default function RegisterPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <IoPerson size={24} className={styles.icon} />
+            <IoPerson
+              size={24}
+              className="top-3 right-3 absolute cursor-pointer"
+            />
           </div>
 
-          <div className={styles.inputDivs}>
-            <label className={styles.label} htmlFor="email">
+          <div className="relative flex flex-auto justify-between w-full">
+            <label className="hidden" htmlFor="email">
               Email{" "}
             </label>
             <input
-              className={styles.input}
+              className="border-gray-500 shadow px-3 py-2 border-b-2 rounded w-full text-lg outline-none"
               type="text"
               id="email"
               name="email"
@@ -74,15 +78,18 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <IoMail size={24} className={styles.icon} />
+            <IoMail
+              size={24}
+              className="top-3 right-3 absolute cursor-pointer"
+            />
           </div>
 
-          <div className={styles.inputDivs}>
-            <label className={styles.label} htmlFor="password">
+          <div className="relative flex flex-auto justify-between w-full">
+            <label className="hidden" htmlFor="password">
               Password{" "}
             </label>
             <input
-              className={styles.input}
+              className="border-gray-500 shadow px-3 py-2 border-b-2 rounded w-full text-lg outline-none"
               type={showPwd ? "text" : "password"}
               id="password"
               name="password"
@@ -94,18 +101,18 @@ export default function RegisterPage() {
               <IoEyeSharp
                 size={24}
                 onClick={() => setShowPwd(!showPwd)}
-                className={styles.icon}
+                className="top-3 right-3 absolute cursor-pointer"
               />
             ) : (
               <IoEyeOffSharp
                 size={24}
                 onClick={() => setShowPwd(!showPwd)}
-                className={styles.icon}
+                className="top-3 right-3 absolute cursor-pointer"
               />
             )}
           </div>
 
-          <div className="">
+          <div className="flex justify-center items-center gap-10">
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
@@ -116,12 +123,23 @@ export default function RegisterPage() {
                 alert(`ERROR! ${error.message}`);
               }}
             />
+            {image && (
+              <Image
+                src={image}
+                alt="uploaded image"
+                width={70}
+                height={70}
+                className="rounded h-w-32 w-32"
+              />
+            )}
           </div>
 
-          <div className={styles.btnContainer}>
-            <button type="submit" className={styles.registerBtn}>
-              Sign up
-            </button>
+          <div className="mx-auto">
+            <ButtonAnimation
+              text="Sign up"
+              type="submit"
+              className="bg-blue-700 px-4 py-2 rounded w-40 text-lg text-white cursor-pointer"
+            />
           </div>
         </form>
       </div>

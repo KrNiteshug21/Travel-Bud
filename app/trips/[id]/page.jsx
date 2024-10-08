@@ -9,7 +9,8 @@ import {
 const TripDetail = ({ params }) => {
   const { id } = params;
   const [trip, setTrip] = useState(null);
-  const [activeImage, setActiveImage] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
+  console.log("trip", trip);
 
   useEffect(() => {
     const fetchTrip = async () => {
@@ -24,7 +25,7 @@ const TripDetail = ({ params }) => {
         alert(data.message);
         return;
       }
-      setTrip(data);
+      setTrip(data.trip);
       console.log(data);
     };
 
@@ -39,9 +40,9 @@ const TripDetail = ({ params }) => {
     );
 
   return (
-    <section className="mt-28 px-2 mb-8 lg:px-4 md:min-h-[65vh] lg:min-h-[60vh] break-words">
-      <div className="flex flex-wrap justify-center lg:flex-nowrap items-start gap-8 my-auto h-full">
-        <div className="">
+    <section className="mt-28 mb-8 px-2 lg:px-4 md:min-h-[65vh] lg:min-h-[60vh] break-words">
+      <div className="flex flex-wrap lg:flex-nowrap justify-center items-start gap-8 my-auto h-full">
+        <div className="overflow-hidden">
           <Image
             src={trip.images[activeImage]}
             alt={`${trip.destinationName}+${id}`}
@@ -75,7 +76,7 @@ const TripDetail = ({ params }) => {
           </h2>
           <p className="xl:w-1/2 break-words">{trip.description}</p>
           <p>
-            <span className="font-medium text-slate-800">TravelCost:</span>
+            <span className="font-medium text-slate-800">TravelCost: </span>₹
             {trip.travelCost}
           </p>
 

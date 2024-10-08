@@ -1,8 +1,9 @@
 "use client";
-import styles from "./page.module.css";
+import ButtonAnimation from "@/Anim/ButtonAnimation";
 import { UploadButton } from "@/hooks/uploadthing";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import Image from "next/image";
 
 const destObject = {
   destinationName: "",
@@ -35,22 +36,24 @@ const CreateTripPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const dest = await createTrip();
+    await createTrip();
     setDestination(destObject);
   };
 
   return (
-    <section className={styles.sectionWrapper}>
-      <div className={styles.sectionContainer}>
-        <h2 className={styles.heading}>Create Trip!</h2>
-        <form onSubmit={handleSubmit} className={styles.formContainer}>
-          <div className={styles.flex}>
-            <div className={styles.inputDivs}>
-              <label className={styles.label} htmlFor="name">
+    <section className="flex justify-center items-center mx-auto max-w-screen-xl min-h-screen">
+      <div className="flex-auto border-2 shadow-xl backdrop-blur-md p-4 rounded-lg max-w-xl">
+        <h2 className="mb-4 font-semibold text-2xl text-center">
+          Create Trip!
+        </h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div className="flex gap-4">
+            <div className="relative flex flex-auto justify-between w-full">
+              <label className="hidden" htmlFor="name">
                 DestinationName
               </label>
               <input
-                className={styles.input}
+                className="border-gray-500 shadow px-3 py-1 border-b-2 rounded w-full text-base outline-none"
                 type="text"
                 id="destinationName"
                 name="destinationName"
@@ -64,12 +67,12 @@ const CreateTripPage = () => {
                 }
               />
             </div>
-            <div className={styles.inputDivs}>
-              <label className={styles.label} htmlFor="username">
+            <div className="relative flex flex-auto justify-between w-full">
+              <label className="hidden" htmlFor="username">
                 Destination Title
               </label>
               <input
-                className={styles.input}
+                className="border-gray-500 shadow px-3 py-1 border-b-2 rounded w-full text-base outline-none"
                 type="text"
                 id="destinationTitle"
                 name="destinationTitle"
@@ -85,17 +88,17 @@ const CreateTripPage = () => {
             </div>
           </div>
 
-          <div className={styles.inputDivs}>
-            <label className={styles.label} htmlFor="name">
+          <div className="relative flex flex-auto justify-between w-full">
+            <label className="hidden" htmlFor="name">
               Description{" "}
             </label>
             <textarea
-              className={styles.textarea}
+              className="border-gray-500 shadow px-3 py-1 border-b-2 rounded w-full text-base outline-none"
               id="name"
               name="name"
               placeholder="Description"
-              rows={10}
-              cols={40}
+              rows={7}
+              cols={20}
               value={destination.description}
               onChange={(e) =>
                 setDestination({ ...destination, description: e.target.value })
@@ -103,12 +106,12 @@ const CreateTripPage = () => {
             />
           </div>
 
-          <div className={styles.inputDivs}>
-            <label className={styles.label} htmlFor="name">
+          <div className="relative flex flex-auto justify-between w-full">
+            <label className="hidden" htmlFor="name">
               Travel Count{" "}
             </label>
             <input
-              className={styles.input}
+              className="border-gray-500 shadow px-3 py-1 border-b-2 rounded w-full text-base outline-none"
               type="number"
               id="name"
               name="name"
@@ -120,7 +123,7 @@ const CreateTripPage = () => {
             />
           </div>
 
-          <div>
+          <div className="space-y-2">
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
@@ -134,12 +137,27 @@ const CreateTripPage = () => {
                 alert(`ERROR! ${error.message}`);
               }}
             />
+            <div className="flex justify-center items-center gap-4">
+              {destination.images.length > 0 &&
+                destination.images.map((image, index) => (
+                  <Image
+                    src={image}
+                    alt={index}
+                    key={index}
+                    width={100}
+                    height={100}
+                    className="rounded w-48 h-24 overflow-hidden object-center object-cover"
+                  />
+                ))}
+            </div>
           </div>
 
-          <div className={styles.btnContainer}>
-            <button type="submit" className={styles.registerBtn}>
-              Create Trip
-            </button>
+          <div className="mx-auto">
+            <ButtonAnimation
+              text="Create Trip"
+              type="submit"
+              className="bg-blue-700 px-4 py-2 rounded w-40 text-lg text-white cursor-pointer"
+            />
           </div>
         </form>
       </div>

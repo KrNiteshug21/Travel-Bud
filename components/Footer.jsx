@@ -1,5 +1,7 @@
-import styles from "./page.module.css";
+"use client";
+import { useRef } from "react";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 
 const footers = [
   {
@@ -29,18 +31,46 @@ const footers = [
 ];
 
 const Footer = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    margin: "-100px",
+    threshold: 0.5,
+    once: true,
+  });
+
   return (
-    <footer className="bg-primaryDarkBlue text-white/90">
-      <div className={styles.footerWrapper}>
+    <footer className="bg-primaryDarkBlue text-white overflow-hidden">
+      <div className="flex flex-wrap justify-between gap-4 px-8 py-12">
         {footers.map((footer, index) => {
           return (
-            <div key={index} className={styles.footerLinkWrapper}>
-              <h3 className={styles.footerLinkHeading}>{footer.head}</h3>
+            <div ref={ref} key={index} className="flex flex-col gap-4">
+              <motion.h3
+                initial={{ opacity: 0, x: 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : null}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="text-2xl"
+              >
+                {footer.head}
+              </motion.h3>
               {footer.links.map((link, i) => {
                 return (
-                  <Link key={`${index}+${i}`} href={link.src}>
-                    {link.title}
-                  </Link>
+                  <motion.div
+                    key={`${index}+${i}`}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : null}
+                    transition={{
+                      duration: 0.25,
+                      delay: (i + 1) * 0.1,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <Link
+                      className="text-white/50 text-xl hover:text-white/70 hover:underline no-underline"
+                      href={link.src}
+                    >
+                      {link.title}
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>

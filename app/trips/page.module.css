@@ -1,6 +1,0 @@
-.sectionWrapper {
-  max-width: min(calc(100% - 3rem), 1200px);
-  margin-inline: auto;
-  min-height: 100vh;
-  margin-top: 4rem;
-}
