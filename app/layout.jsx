@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function RootLayout({ session, children }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body className="relative bg-gray-300 dark:bg-slate-700">
         <Wrapper session={session}>
           <Navbar />
