@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ session, children }) {
   return (
     <html lang="en">
-      <body className="relative bg-gray-300 dark:bg-slate-700">
+      <body className="relative bg-gray-300">
         <Wrapper session={session}>
           <Navbar />
           {children}

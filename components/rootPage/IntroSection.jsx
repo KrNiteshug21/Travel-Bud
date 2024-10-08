@@ -36,6 +36,7 @@ const IntroSection = () => {
           className="rounded-lg aspect-auto"
           src={"/img/Customer-Service-in-Travel-Industry.jpg"}
           alt="Customer Expectations in Tourism"
+          priority={1}
           width={600}
           height={600}
           style={{ width: "auto", height: "auto" }}
