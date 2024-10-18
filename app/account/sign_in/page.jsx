@@ -14,12 +14,12 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signIn("credentials", {
+    const data = await signIn("credentials", {
       email,
       password,
-      redirect: true,
-      callbackUrl: "/",
     });
+    console.log("data", data);
+
     setPassword("");
     setEmail("");
   };

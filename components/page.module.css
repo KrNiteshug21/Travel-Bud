@@ -23,7 +23,7 @@
   position: relative;
   padding: 0.25rem 0.5rem;
   color: white;
-  transition: color 1s ease-out;
+  transition: color 0.5s ease-out;
   z-index: 1;
   border-radius: 0.25rem;
   overflow: hidden;
@@ -42,7 +42,7 @@
   border-radius: 50%;
   background-color: whitesmoke;
   margin-block: auto;
-  animation: zoop 2s ease-in-out forwards;
+  animation: zoop 1s ease-in-out forwards;
   transform-origin: center;
   z-index: -1;
 }

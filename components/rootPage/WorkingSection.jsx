@@ -6,22 +6,22 @@ import { TextRevealAnimation } from "@/Anim/TextRevealAnimation";
 
 const howDoesItWorkData = [
   {
-    id: 1,
+    id: 0,
     title: "Find your next Travel Buddy",
     desc: "Find your next travel buddy in your dream destination and discover unique adventures around the world.",
   },
   {
-    id: 2,
+    id: 1,
     title: "Book your Dream Trip",
     desc: "Secure your spot on your dream trip with the best travel buddies in the world by paying a 20% deposit.",
   },
   {
-    id: 3,
+    id: 2,
     title: "Travel the World together!",
     desc: "Pack your bags and off you go! Meet amazing travel friends and discover unique places worldwide!",
   },
   {
-    id: 4,
+    id: 3,
     title: "Share your Experience",
     desc: "Share your travel experience with the world. Inspire others to travel and create unforgettable memories!",
   },

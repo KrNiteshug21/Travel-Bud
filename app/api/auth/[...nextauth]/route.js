@@ -39,12 +39,20 @@ export const OPTIONS = {
         const { email, password } = credentials;
         if (!email || !password) return null;
         const user = await User.findOne({ email });
-        if (!user) return null;
+        if (!user)
+          return {
+            status: 404,
+            message: "User not found",
+          };
 
         const isSame = await bcrypt.compare(password, user.password);
-        if (!isSame) return null;
+        if (!isSame)
+          return {
+            status: 401,
+            message: "Invalid password",
+          };
 
-        return user;
+        return { status: 200, user };
       },
     }),
   ],

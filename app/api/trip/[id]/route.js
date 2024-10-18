@@ -51,6 +51,7 @@ export const PATCH = async (req, { params }) => {
   await trip.save();
 
   return NextResponse.json({
+    status: 200,
     message: `${user.username} joined trip to ${trip.destinationName}`,
   });
 };

@@ -45,9 +45,9 @@ const Footer = () => {
           return (
             <div ref={ref} key={index} className="flex flex-col gap-4">
               <motion.h3
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : null}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="text-2xl"
               >
                 {footer.head}
@@ -56,11 +56,11 @@ const Footer = () => {
                 return (
                   <motion.div
                     key={`${index}+${i}`}
-                    initial={{ opacity: 0, x: 50 }}
+                    initial={{ opacity: 0, x: -50 }}
                     animate={isInView ? { opacity: 1, x: 0 } : null}
                     transition={{
-                      duration: 0.25,
-                      delay: (i + 1) * 0.1,
+                      duration: 0.5,
+                      delay: (i + 1) * 0.25,
                       ease: "easeInOut",
                     }}
                   >

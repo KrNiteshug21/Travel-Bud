@@ -5,15 +5,15 @@ import { motion, useInView } from "framer-motion";
 const CardAnimation = ({ children }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    margin: "-300px",
+    margin: "-200px",
     once: true,
   });
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : null}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : null}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       ref={ref}
     >
       {children}

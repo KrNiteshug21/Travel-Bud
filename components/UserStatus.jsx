@@ -2,20 +2,44 @@
 import styles from "./page.module.css";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-const UserStatus = () => {
+const UserStatus = ({ isInView }) => {
   const { data: session } = useSession();
   // console.log(session);
 
   if (!session) {
     return (
       <>
-        <button className={styles.navBtn}>
+        <motion.button
+          initial={{ y: 20, opacity: 0 }}
+          animate={{
+            y: isInView ? 20 : 0,
+            opacity: isInView ? 0 : 1,
+          }}
+          transition={{
+            duration: 0.25,
+            delay: 0.45 + 0.1 * 4,
+          }}
+          className={styles.navBtn}
+        >
           <Link href="/account/sign_up">Sign up</Link>
-        </button>
-        <button className={styles.navBtn} onClick={() => signIn()}>
+        </motion.button>
+        <motion.button
+          initial={{ y: 20, opacity: 0 }}
+          animate={{
+            y: isInView ? 20 : 0,
+            opacity: isInView ? 0 : 1,
+          }}
+          transition={{
+            duration: 0.25,
+            delay: 0.45 + 0.1 * 5,
+          }}
+          className={styles.navBtn}
+          onClick={() => signIn()}
+        >
           Log in
-        </button>
+        </motion.button>
       </>
     );
   }
@@ -25,9 +49,21 @@ const UserStatus = () => {
   return (
     <>
       {/* <p>Signed in as {session?.user?.email}</p> */}
-      <button className={styles.navBtn} onClick={() => signOut()}>
+      <motion.button
+        initial={{ y: 20, opacity: 0 }}
+        animate={{
+          y: isInView ? 20 : 0,
+          opacity: isInView ? 0 : 1,
+        }}
+        transition={{
+          duration: 0.25,
+          delay: 0.45 + 0.1 * 4,
+        }}
+        className={styles.navBtn}
+        onClick={() => signOut()}
+      >
         Sign out
-      </button>
+      </motion.button>
     </>
   );
 };
