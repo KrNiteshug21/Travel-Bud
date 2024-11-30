@@ -60,7 +60,7 @@ export const OPTIONS = {
   callbacks: {
     async jwt({ token, account, profile, user }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
-      console.log("JWT", token, account, profile, user);
+      // console.log("JWT", token, account, profile, user);
 
       if (user) {
         token.id = user._id;
@@ -69,7 +69,7 @@ export const OPTIONS = {
     },
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      console.log("SESSION", session, token, user);
+      // console.log("SESSION", session, token, user);
 
       session.user.id = token.id;
       return session;

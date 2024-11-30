@@ -18,7 +18,7 @@ export default function LoginPage() {
       email,
       password,
     });
-    console.log("data", data);
+    // console.log("data", data);
 
     setPassword("");
     setEmail("");

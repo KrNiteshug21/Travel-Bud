@@ -11,7 +11,6 @@ const TripDetail = ({ params }) => {
   const { id } = params;
   const [trip, setTrip] = useState(null);
   const [activeImage, setActiveImage] = useState(0);
-  console.log("trip", trip);
 
   useEffect(() => {
     const fetchTrip = async () => {
@@ -27,7 +26,6 @@ const TripDetail = ({ params }) => {
         return;
       }
       setTrip(data.trip);
-      console.log(data);
     };
 
     fetchTrip();
@@ -43,7 +41,6 @@ const TripDetail = ({ params }) => {
     });
     const data = await res.json();
     if (data.status === 500) return alert(data.message);
-    console.log("data", data);
     if (data.status === 200) alert(data.message);
     // window.location.reload();
   };
@@ -60,7 +57,6 @@ const TripDetail = ({ params }) => {
       }),
     });
     const data = await res.json();
-    console.log("data", data);
     alert(data.message);
     if (data.revalidated) window.location.reload();
   };

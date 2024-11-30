@@ -4,12 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { Phone, Mail } from "lucide-react";
 import {
-  AiFillPhone,
   AiFillFacebook,
   AiFillTwitterSquare,
   AiFillLinkedin,
 } from "react-icons/ai";
-import { MdEmail } from "react-icons/md";
 import { FaPinterestSquare, FaInstagramSquare } from "react-icons/fa";
 
 export default function ContactPage() {
@@ -19,9 +17,9 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`FullName: ${fullName}`);
-    console.log(`Email: ${email}`);
-    console.log(`Message: ${message}`);
+    // console.log(`FullName: ${fullName}`);
+    // console.log(`Email: ${email}`);
+    // console.log(`Message: ${message}`);
     setFullName("");
     setEmail("");
     setMessage("");
@@ -35,10 +33,10 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-lg">
-            We're thrilled that you want to get in touch with us at Moviedise.
-            Whether you have questions, feedback, or simply want to connect with
-            fellow movie enthusiasts, we're here and eager to hear from you.
-            Feel free to reach us.
+            We&#39;s re thrilled that you want to get in touch with us at{" "}
+            <b>Travel Buddy</b>. Whether you have questions, feedback, or simply
+            want to connect with fellow movie enthusiasts, we&#39;s re here and
+            eager to hear from you. Feel free to reach us.
           </p>
         </div>
 
@@ -48,13 +46,14 @@ export default function ContactPage() {
           </h2>
           <p className="text-lg">
             Your opinion matters to us! If you have suggestions for improving
-            our platform, features you'd like to see, or any other input, please
-            don't hesitate to share. We're constantly striving to enhance your
-            experience and value your insights. Thank you for considering
-            reaching out to <b>Travel Buddy</b>. We're dedicated to providing a
-            seamless and enjoyable experience for all movie enthusiasts, and
-            your engagement is essential in achieving that goal. Let's continue
-            celebrating the magic of cinema together!
+            our platform, features you&#39;s d like to see, or any other input,
+            please don&#39;s t hesitate to share. We&#39;s re constantly
+            striving to enhance your experience and value your insights. Thank
+            you for considering reaching out to <b>Travel Buddy</b>. We&#39;s re
+            dedicated to providing a seamless and enjoyable experience for all
+            movie enthusiasts, and your engagement is essential in achieving
+            that goal. Let&#39;s s continue celebrating the magic of cinema
+            together!
           </p>
         </div>
 
@@ -97,12 +96,12 @@ export default function ContactPage() {
             <div className="p-4 text-center">
               <Phone className="mx-auto w-16 h-16" />
               <h2 className="font-semibold text-2xl">PHONE</h2>
-              <p>+91******2187</p>
+              <p>+918953682187</p>
             </div>
             <div className="p-4 text-center">
               <Mail className="mx-auto w-16 h-16" />
               <h2 className="font-semibold text-2xl">EMAIL</h2>
-              <p>dummyJack12@gmail.com</p>
+              <p>niteshkr8953@gmail.com</p>
             </div>
             <div className="flex justify-center items-center gap-2 p-4">
               <Link href="https://www.facebook.com/">

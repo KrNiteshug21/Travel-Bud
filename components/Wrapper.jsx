@@ -6,8 +6,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient();
 
 const Wrapper = ({ session, children }) => {
-  console.log("session", session);
-
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
