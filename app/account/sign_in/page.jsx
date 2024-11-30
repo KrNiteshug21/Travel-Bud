@@ -24,6 +24,10 @@ export default function LoginPage() {
     setEmail("");
   };
 
+  const handleLogin = async ({ provider }) => {
+    await signIn(provider);
+  };
+
   return (
     <section className="flex justify-center items-center mx-auto max-w-screen-xl min-h-screen">
       <div className="flex-auto border-2 shadow-xl backdrop-blur-md p-4 rounded-lg max-w-md">
@@ -92,27 +96,27 @@ export default function LoginPage() {
 
         <p className="my-4 text-center text-lg">or</p>
 
-        {/* <div className="flex flex-col gap-4">
-          <Link
-            href="#"
+        <div className="flex flex-col gap-4">
+          <button
+            onClick={() => handleLogin("facebook")}
             className="relative flex justify-center items-center gap-2 bg-blue-600 mx-5 py-2 border-none rounded text-lg text-white overflow-hidden"
           >
             <span className="left-0 absolute place-content-center grid bg-blue-950 w-12 h-full">
               <FaFacebook size={24} />
             </span>{" "}
             Login with Facebook
-          </Link>
-          <Link
-            href="#"
+          </button>
+          <button
+            onClick={() => handleLogin("google")}
             className="relative flex justify-center items-center gap-2 bg-blue-600 mx-5 py-2 border-none rounded text-lg text-white overflow-hidden"
           >
             <span className="left-0 absolute place-content-center grid bg-blue-950 w-12 h-full">
               <FcGoogle size={24} />
             </span>
             Login with Google
-          </Link>
+          </button>
         </div>
-        <p className="my-4 text-center text-lg">or</p> */}
+        <p className="my-4 text-center text-lg">or</p>
 
         <p className="text-center text-lg">
           <Link

@@ -16,7 +16,7 @@ const footers = [
   {
     head: "Travel Buddy",
     links: [
-      { title: "About us", src: "#" },
+      { title: "About us", src: "/about" },
       { title: "Careers", src: "#" },
     ],
   },
@@ -47,7 +47,7 @@ const Footer = () => {
               <motion.h3
                 initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : null}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="text-2xl"
               >
                 {footer.head}
@@ -59,9 +59,9 @@ const Footer = () => {
                     initial={{ opacity: 0, x: -50 }}
                     animate={isInView ? { opacity: 1, x: 0 } : null}
                     transition={{
-                      duration: 0.5,
+                      duration: 0.25,
                       delay: (i + 1) * 0.25,
-                      ease: "easeInOut",
+                      ease: "easeIn",
                     }}
                   >
                     <Link

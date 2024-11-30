@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 const CardAnimation = ({ children }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    margin: "-200px",
+    margin: "-100px",
     once: true,
   });
 

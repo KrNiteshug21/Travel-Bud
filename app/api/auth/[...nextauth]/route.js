@@ -6,10 +6,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import connectDB from "@/lib/DBConn";
 import bcrypt from "bcrypt";
 
-async function handler(req, res) {
-  return await NextAuth(req, res, OPTIONS);
-}
-
 export const OPTIONS = {
   providers: [
     GitHubProvider({
@@ -52,7 +48,7 @@ export const OPTIONS = {
             message: "Invalid password",
           };
 
-        return { status: 200, user };
+        return { status: 200, user: { id: user._id, email: user.email } };
       },
     }),
   ],
@@ -64,6 +60,8 @@ export const OPTIONS = {
   callbacks: {
     async jwt({ token, account, profile, user }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
+      console.log("JWT", token, account, profile, user);
+
       if (user) {
         token.id = user._id;
       }
@@ -71,12 +69,14 @@ export const OPTIONS = {
     },
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token and user id from a provider.
+      console.log("SESSION", session, token, user);
+
       session.user.id = token.id;
       return session;
     },
   },
 };
 
-// const handler = NextAuth(OPTIONS);
+const handler = NextAuth(OPTIONS);
 
 export { handler as GET, handler as POST };

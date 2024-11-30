@@ -26,7 +26,10 @@ export default function Navbar() {
       ref={ref}
     >
       <div className="flex justify-between items-center gap-10 text-xl">
-        <Link className="no-underline" href="/">
+        <Link
+          className="no-underline hover:scale-95 hover:transition-all hover:duration-100"
+          href="/"
+        >
           <h1 className="text-2xl text-white">Travel Buddy</h1>
         </Link>
 

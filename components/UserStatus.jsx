@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const UserStatus = ({ isInView }) => {
   const { data: session } = useSession();
-  // console.log(session);
+  console.log("session", session);
 
   if (!session) {
     return (
