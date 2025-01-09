@@ -21,10 +21,7 @@ export default function Navbar() {
   const isInView = useInView(mobileNavRef);
 
   return (
-    <nav
-      className="top-0 right-0 left-0 z-10 fixed bg-slate-700 backdrop-blur-lg mx-auto px-4 py-1 w-full"
-      ref={ref}
-    >
+    <nav className="top-0 right-0 left-0 z-10 fixed bg-slate-700 backdrop-blur-lg mx-auto px-4 py-1 w-full">
       <div className="flex justify-between items-center gap-10 text-xl">
         <Link
           className="no-underline hover:scale-95 hover:transition-all hover:duration-100"
@@ -36,22 +33,10 @@ export default function Navbar() {
         <div className="sm:flex hidden">
           {navigations.map((nav) => (
             <Link className={styles.navBtn} href={nav.src} key={nav.id}>
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{
-                  y: isInView ? 20 : 0,
-                  opacity: isInView ? 0 : 1,
-                }}
-                transition={{
-                  duration: 0.25,
-                  delay: 0.45 + 0.1 * nav.id,
-                }}
-              >
-                {nav.title}
-              </motion.div>
+              <div>{nav.title}</div>
             </Link>
           ))}
-          <UserStatus />
+          <UserStatus mode="desktop" />
         </div>
 
         <div className="block sm:hidden overflow-hidden">
@@ -98,7 +83,7 @@ export default function Navbar() {
                       </motion.div>
                     </Link>
                   ))}
-                  <UserStatus isInView={isInView} />
+                  <UserStatus mode="mobile" isInView={isInView} />
                 </div>
               </motion.div>
             )}

@@ -1,8 +1,12 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-export const TextRevealAnimation = ({ text, isInView }) => {
+export const TextRevealAnimation = ({ text, className = "" }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.5 });
+
   return (
-    <>
+    <h2 ref={ref} className={className}>
       {text.split("").map((char, index) => {
         return (
           <motion.span
@@ -15,6 +19,6 @@ export const TextRevealAnimation = ({ text, isInView }) => {
           </motion.span>
         );
       })}
-    </>
+    </h2>
   );
 };

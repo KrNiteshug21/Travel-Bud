@@ -77,8 +77,7 @@ const TripDetail = ({ params }) => {
             alt={`${trip.destinationName}+${id}`}
             width={1280}
             height={720}
-            style={{ width: "auto", height: "auto" }}
-            className="rounded-md w-full h-full object-center object-cover"
+            className="rounded-md w-[600px] h-[350px] object-center object-cover"
           />
           <div className="flex justify-center items-center gap-4 my-2">
             {Array.from({ length: trip.images.length }, (_, index) => {
@@ -104,10 +103,10 @@ const TripDetail = ({ params }) => {
             {trip.destinationName}: {trip.destinationTitle}
           </h2>
           <p className="xl:w-1/2 break-words">{trip.description}</p>
-          <p>
+          {/* <p>
             <span className="font-medium text-slate-800">TravelCost: </span>₹
             {trip.travelCost}
-          </p>
+          </p> */}
 
           <div className="flex items-center gap-6">
             <div>

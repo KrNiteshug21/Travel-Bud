@@ -2,18 +2,22 @@ import React from "react";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const CardAnimation = ({ children }) => {
+const CardAnimation = ({
+  children,
+  className = "",
+  triggerHoverAnimation = false,
+}) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, {
-    margin: "-100px",
-    once: true,
-  });
+  const isInView = useInView(ref, { once: true, threshold: 0.5 });
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : null}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={className}
+      initial={{ y: -30, opacity: 0 }}
+      animate={isInView ? { y: 0, opacity: 1 } : { y: -30, opacity: 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      whileHover={triggerHoverAnimation && { scale: 1.05 }}
+      layout={true}
       ref={ref}
     >
       {children}

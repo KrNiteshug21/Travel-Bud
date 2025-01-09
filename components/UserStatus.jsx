@@ -4,7 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const UserStatus = ({ isInView }) => {
+const UserStatus = ({ mode, isInView }) => {
   const { data: session } = useSession();
 
   if (!session) {
@@ -13,8 +13,8 @@ const UserStatus = ({ isInView }) => {
         <motion.button
           initial={{ y: 20, opacity: 0 }}
           animate={{
-            y: isInView ? 20 : 0,
-            opacity: isInView ? 0 : 1,
+            y: isInView && mode === "mobile" ? 20 : 0,
+            opacity: isInView && mode === "mobile" ? 0 : 1,
           }}
           transition={{
             duration: 0.25,
@@ -27,8 +27,8 @@ const UserStatus = ({ isInView }) => {
         <motion.button
           initial={{ y: 20, opacity: 0 }}
           animate={{
-            y: isInView ? 20 : 0,
-            opacity: isInView ? 0 : 1,
+            y: isInView && mode === "mobile" ? 20 : 0,
+            opacity: isInView && mode === "mobile" ? 0 : 1,
           }}
           transition={{
             duration: 0.25,
@@ -51,8 +51,8 @@ const UserStatus = ({ isInView }) => {
       <motion.button
         initial={{ y: 20, opacity: 0 }}
         animate={{
-          y: isInView ? 20 : 0,
-          opacity: isInView ? 0 : 1,
+          y: isInView && mode === "mobile" ? 20 : 0,
+          opacity: isInView && mode === "mobile" ? 0 : 1,
         }}
         transition={{
           duration: 0.25,

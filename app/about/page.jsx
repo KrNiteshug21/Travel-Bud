@@ -10,19 +10,24 @@ import {
 } from "react-icons/ai";
 import { FaPinterestSquare, FaInstagramSquare } from "react-icons/fa";
 
+const initContactObj = {
+  fullName: "",
+  email: "",
+  message: "",
+};
+
 export default function ContactPage() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [contactObj, setContactObj] = useState(initContactObj);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContactObj({ ...contactObj, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(`FullName: ${fullName}`);
-    // console.log(`Email: ${email}`);
-    // console.log(`Message: ${message}`);
-    setFullName("");
-    setEmail("");
-    setMessage("");
+    console.log("contactObj", contactObj);
+    setContactObj(initContactObj);
   };
 
   return (
@@ -64,22 +69,25 @@ export default function ContactPage() {
                 Feedback Form
               </h2>
               <input
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                name="fullName"
+                value={contactObj.fullName}
+                onChange={handleChange}
                 placeholder="Full Name..."
                 className="border-gray-500 shadow px-3 py-2 border-b-2 rounded w-full text-lg outline-none"
               />
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={contactObj.email}
+                onChange={handleChange}
                 placeholder="eg: dummy@gmail.com"
                 className="border-gray-500 shadow px-3 py-2 border-b-2 rounded w-full text-lg outline-none"
               />
               <textarea
-                value={message}
+                value={contactObj.message}
+                name="message"
                 rows={5}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={handleChange}
                 placeholder="Enter your message or query..."
                 className="border-gray-700 px-4 py-2 border-b-2 rounded-md outline-none"
               />

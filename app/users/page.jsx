@@ -2,6 +2,7 @@
 import BuddyCards from "@/components/rootPage/BuddyCards";
 import { useUsers } from "@/hooks/queries";
 import CardSkeleton from "@/components/skeletons/CardSkeleton";
+import SectionWrapper from "@/components/wrapper/SectionWrapper";
 
 export default function UsersPage() {
   const { data: users, isLoading, isError, error } = useUsers();
@@ -10,9 +11,9 @@ export default function UsersPage() {
 
   return (
     <main className="mt-16 mb-4">
-      <div className="mx-auto px-2 max-w-screen-xl">
+      <SectionWrapper>
         <h1 className="mb-4 font-semibold text-3xl text-center">Users</h1>
-        <section className="flex flex-wrap justify-center gap-6">
+        <section className="gap-4 space-y-4 p-4 columns-1 md:columns-2 lg:columns-3">
           {isLoading
             ? Array.from({ length: 6 }, (_, index) => index + 1).map((n) => (
                 <CardSkeleton key={n} />
@@ -21,7 +22,7 @@ export default function UsersPage() {
                 return <BuddyCards key={user._id} user={user} />;
               })}
         </section>
-      </div>
+      </SectionWrapper>
     </main>
   );
 }

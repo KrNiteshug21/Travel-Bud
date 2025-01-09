@@ -1,12 +1,12 @@
 "use client";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import CardSkeleton from "../skeletons/CardSkeleton";
 import CardAnimation from "@/Anim/CardAnimation";
 import Link from "next/link";
 import ButtonAnimation from "@/Anim/ButtonAnimation";
 import { useState } from "react";
 import SuccessModal from "../SuccessModal";
+import { SlidingCarousel } from "../Carousels/sliding-carousel";
 
 const initialModalObj = {
   header: "",
@@ -68,24 +68,17 @@ const TripCard = ({ trip }) => {
         <SuccessModal modalObj={modalObj} clickFunction={clickFunction} />
       )}
       <CardAnimation>
-        <div className="shadow-2xl rounded-lg w-[350px] mb-4 overflow-hidden">
-          <div className="overflow-hidden">
-            <Image
-              src={trip.images[0]}
-              alt={trip.destinationName}
-              width={350}
-              height={350}
-              className="object-center object-cover w-full h-full transform hover:duration-500 cursor-pointer hover:scale-110 "
-            />
-          </div>
-          <div className="p-4 text-gray-500 space-y-4">
+        <div className="shadow-2xl mb-4 rounded-lg overflow-hidden">
+          <SlidingCarousel images={trip?.images} />
+
+          <div className="space-y-4 p-4 text-gray-500">
             <h2 className="font-semibold text-2xl text-black/90">
               <Link className="hover:underline" href={`/trips/${trip._id}`}>
                 {trip.destinationName}: {trip.destinationTitle}
               </Link>
             </h2>
             <p className="">{trip.description}</p>
-            <div className="flex items-center justify-between ">
+            <div className="flex justify-between items-center">
               <ButtonAnimation
                 text="Join Trip"
                 clickFunction={joinTrip}
@@ -94,7 +87,7 @@ const TripCard = ({ trip }) => {
               <ButtonAnimation
                 text="Delete Trip"
                 clickFunction={deleteTrip}
-                className="bg-red-700 hover:bg-red-900 text-white py-2 px-4 rounded-lg"
+                className="bg-red-700 hover:bg-red-900 px-4 py-2 rounded-lg text-white"
               />
             </div>
           </div>

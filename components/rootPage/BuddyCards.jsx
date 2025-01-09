@@ -4,14 +4,14 @@ import Image from "next/image";
 const BuddyCards = ({ user }) => {
   return (
     <CardAnimation>
-      <article className="bg-slate-200 shadow-lg rounded-md w-[350px] overflow-hidden">
+      <article className="shadow-lg rounded-md overflow-hidden">
         <div className="overflow-hidden">
           <Image
             src={user.profilePic || user.profilepic}
             alt={user.username}
             width={350}
             height={300}
-            className="w-full h-full transform hover:duration-500 cursor-pointer object-center object-cover hover:scale-110"
+            className="w-full h-full transform hover:duration-500 cursor-pointer hover:scale-110 object-center object-cover"
           />
         </div>
         <div className="flex flex-col gap-4 p-4 text-lg">

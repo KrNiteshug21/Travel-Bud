@@ -1,7 +1,5 @@
 "use client";
 import Cards from "./Cards";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
 import { TextRevealAnimation } from "@/Anim/TextRevealAnimation";
 import { Search, Calendar, Plane, Share2 } from "lucide-react";
 
@@ -49,17 +47,16 @@ const howDoesItWorkData = [
 ];
 
 const WorkingSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-200px", once: true });
-
   return (
-    <section ref={ref} className="py-20">
-      <h2 className="mx-auto mb-8 w-max font-semibold text-3xl tracking-wider">
-        <TextRevealAnimation isInView={isInView} text="How Does It Work?" />
-      </h2>
+    <section className="py-20">
+      <TextRevealAnimation
+        className="mx-auto mb-8 w-max font-semibold text-3xl tracking-wider"
+        text="How Does It Work?"
+      />
+
       <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {howDoesItWorkData.map((data) => (
-          <Cards isInView={isInView} key={data.id} data={data} />
+          <Cards key={data.id} data={data} />
         ))}
       </div>
     </section>

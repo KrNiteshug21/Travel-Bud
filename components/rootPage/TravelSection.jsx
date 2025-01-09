@@ -1,8 +1,6 @@
 "use client";
 import { TextRevealAnimation } from "@/Anim/TextRevealAnimation";
 import Cards from "./Cards";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
 import { Users, Compass, Plane, HeadphonesIcon } from "lucide-react";
 
 const travelWithUsData = [
@@ -49,20 +47,16 @@ const travelWithUsData = [
 ];
 
 const TravelSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-00px", once: true });
-
   return (
     <section className="py-20">
-      <h1 className="mx-auto mb-8 w-max font-semibold text-3xl tracking-wider">
-        <TextRevealAnimation isInView={isInView} text="Why Travel With Us" />
-      </h1>
-      <div
-        ref={ref}
-        className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-      >
+      <TextRevealAnimation
+        className="mx-auto mb-8 w-max font-semibold text-3xl tracking-wider"
+        text="Why Travel With Us"
+      />
+
+      <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {travelWithUsData.map((data) => (
-          <Cards isInView={isInView} key={data.id} data={data} />
+          <Cards key={data.id} data={data} />
         ))}
       </div>
     </section>
