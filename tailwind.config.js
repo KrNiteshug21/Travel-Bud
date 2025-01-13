@@ -9,6 +9,9 @@ export default withUt({
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    borderWidth: {
+      1: "1px",
+    },
     extend: {
       colors: {
         primaryDarkBlue: "#14142e",

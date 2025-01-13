@@ -80,10 +80,10 @@ export default function LoginPage() {
             )}
           </div>
 
-          <div className="flex justify-between items-center text-lg">
-            {/* <p>Remember me</p> */}
+          {/* <div className="flex justify-between items-center text-lg">
+            <p>Remember me</p>
             <p>Forgot password</p>
-          </div>
+          </div> */}
 
           <div className="mx-auto">
             <ButtonAnimation
@@ -96,7 +96,7 @@ export default function LoginPage() {
 
         <p className="my-4 text-center text-lg">or</p>
 
-        <div className="flex flex-col gap-4">
+        {/* <div className="flex flex-col gap-4">
           <button
             onClick={() => handleLogin("facebook")}
             className="relative flex justify-center items-center gap-2 bg-blue-600 mx-5 py-2 border-none rounded text-lg text-white overflow-hidden"
@@ -116,7 +116,7 @@ export default function LoginPage() {
             Login with Google
           </button>
         </div>
-        <p className="my-4 text-center text-lg">or</p>
+        <p className="my-4 text-center text-lg">or</p> */}
 
         <p className="text-center text-lg">
           <Link

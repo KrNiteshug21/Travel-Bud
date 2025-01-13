@@ -6,6 +6,14 @@ import {
   RiCheckboxBlankCircleFill,
   RiCheckboxBlankCircleLine,
 } from "react-icons/ri";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Calendar,
+  Users,
+  Mail,
+} from "lucide-react";
 
 const TripDetail = ({ params }) => {
   const { id } = params;
@@ -99,23 +107,18 @@ const TripDetail = ({ params }) => {
         </div>
 
         <div className="flex-1 space-y-4 w-1/4 text-lg text-slate-600 lg:text-xl">
-          <h2 className="font-semibold text-2xl text-slate-800 lg:text-4xl underline underline-offset-4">
+          <h2 className="font-semibold text-2xl text-slate-800 lg:text-4xl">
             {trip.destinationName}: {trip.destinationTitle}
           </h2>
-          <p className="xl:w-1/2 break-words">{trip.description}</p>
+          <p className="xl:w-1/2 text-justify text-lg break-words">
+            {trip.description}
+          </p>
           {/* <p>
             <span className="font-medium text-slate-800">TravelCost: </span>₹
             {trip.travelCost}
           </p> */}
 
           <div className="flex items-center gap-6">
-            <div>
-              <p className="font-semibold text-gray-700 text-xl">
-                <span className="font-medium text-slate-800">Created by:</span>{" "}
-                {trip.createdBy.username}
-              </p>
-              <p>{trip.createdBy.email}</p>
-            </div>
             <div>
               <Image
                 src={trip.createdBy.profilePic}
@@ -124,6 +127,16 @@ const TripDetail = ({ params }) => {
                 height={50}
                 className="rounded-full w-12 h-12 overflow-hidden object-center object-cover"
               />
+            </div>
+            <div>
+              <p className="font-semibold text-gray-700 text-lg">
+                <span className="font-medium text-slate-800">Created by:</span>{" "}
+                {trip.createdBy.username}
+              </p>
+              <p className="flex items-center gap-2 text-base">
+                <Mail size={16} />
+                <span>{trip.createdBy.email}</span>
+              </p>
             </div>
           </div>
 

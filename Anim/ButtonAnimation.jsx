@@ -12,7 +12,7 @@ const ButtonAnimation = ({
     <motion.button
       type={type}
       initial={{ scale: 1 }}
-      whileHover={disabled ? null : { scale: 0.93 }}
+      whileHover={disabled ? null : { scale: 0.98 }}
       whileTap={disabled ? null : { scale: 1.1 }}
       onClick={clickFunction}
       className={className}

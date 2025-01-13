@@ -14,6 +14,7 @@ const initialModalObj = {
 
 const BuddyCards = ({ dest }) => {
   const session = useSession();
+  console.log("session", session);
   const [modalObj, setModalObj] = useState(initialModalObj);
 
   const createTrip = async () => {

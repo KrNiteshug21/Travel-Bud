@@ -40,22 +40,25 @@ export const OPTIONS = {
             status: 404,
             message: "User not found",
           };
+        console.log("user", user);
 
         const isSame = await bcrypt.compare(password, user.password);
+        console.log("isSame", isSame);
+
         if (!isSame)
           return {
             status: 401,
             message: "Invalid password",
           };
 
-        return { status: 200, user: { id: user._id, email: user.email } };
+        return { id: user._id, email: user.email };
       },
     }),
   ],
   pages: {
     signIn: "/account/sign_in",
   },
-  secret: process.env.NEXTAUTH,
+  secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
     async jwt({ token, account, profile, user }) {
@@ -63,7 +66,7 @@ export const OPTIONS = {
       // console.log("JWT", token, account, profile, user);
 
       if (user) {
-        token.id = user._id;
+        token.id = user.id || user._id;
       }
       return token;
     },
